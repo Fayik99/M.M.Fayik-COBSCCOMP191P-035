@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  UpdateViewController.swift
 //  M.M.Fayik-COBSCCOMP191P-035
 //
 //  Created by Fayik Muzammil on 8/22/20.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class UpdateViewController: UIViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.yellow
+        view.backgroundColor = UIColor.red
     }
-
+    
 }
