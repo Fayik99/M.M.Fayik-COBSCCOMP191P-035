@@ -1,0 +1,6 @@
+framework module Pods_M_M_Fayik_COBSCCOMP191P_035Tests {
+  umbrella header "Pods-M.M.Fayik-COBSCCOMP191P-035Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

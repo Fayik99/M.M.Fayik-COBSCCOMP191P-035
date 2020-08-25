@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_M_M_Fayik_COBSCCOMP191P_035_M_M_Fayik_COBSCCOMP191P_035UITests : NSObject
+@end
+@implementation PodsDummy_Pods_M_M_Fayik_COBSCCOMP191P_035_M_M_Fayik_COBSCCOMP191P_035UITests
+@end
