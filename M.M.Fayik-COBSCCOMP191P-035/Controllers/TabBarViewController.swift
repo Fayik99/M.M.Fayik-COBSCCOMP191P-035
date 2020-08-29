@@ -11,8 +11,8 @@ import MapKit
 
 class TabBarViewController: UIViewController {
     
-    private let mapView = MKMapView()
-    private let locationManager = CLLocationManager()
+  //  private let mapView = MKMapView()
+  // private let locationManager = CLLocationManager()
     let tabBar = UITabBarController()
     
     override func viewDidLoad() {
@@ -37,13 +37,13 @@ class TabBarViewController: UIViewController {
         tabBar.viewControllers = [homeViewController,updateViewController,settingsViewController]
         self.view.addSubview(tabBar.view)
     }
-    func configureUi()
-    {
-        tab()
-        view.addSubview(mapView)
-        mapView.sizeToFit()
-        
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
-    }
+//    func configureUi()
+//    {
+//        tab()
+//        view.addSubview(mapView)
+//        mapView.sizeToFit()
+//
+//        mapView.showsUserLocation = true
+//        mapView.userTrackingMode = .follow
+//    }
 }

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           window = UIWindow()
           window?.makeKeyAndVisible()
        // window?.rootViewController = MainTabBarViewController()
-          window?.rootViewController = TabBarViewController()
+          window?.rootViewController = HomeViewController()
         
           return true
       }

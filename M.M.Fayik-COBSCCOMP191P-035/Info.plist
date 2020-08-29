@@ -28,6 +28,10 @@
 	<string>We need your location to protect from COVID19 patients</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please give your location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Using camera</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Face Id</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

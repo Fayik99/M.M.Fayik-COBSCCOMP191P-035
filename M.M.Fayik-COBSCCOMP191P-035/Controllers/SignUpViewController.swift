@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import GeoFire
 
 class SignUpViewController: UIViewController {
 
+    private var location = LocationHandling.shared.locationManager.location
     // MARK: - Properties
     private let apptitleLabel: UILabel = {
         
@@ -25,31 +27,31 @@ class SignUpViewController: UIViewController {
     }()
     
     private lazy var emailContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "icons8-upload-100"), textField: emailTextField )
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"), textField: emailTextField )
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
     
     private lazy var fullNameContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "icons8-settings-100"), textField: fullNameTextField )
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_person_outline_white_2x"), textField: fullNameTextField )
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
     
     private lazy var addressContainerView: UIView = {
-          let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "icons8-user-100"), textField: addressTextField )
+          let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_person_outline_white_2x"), textField: addressTextField )
           view.heightAnchor.constraint(equalToConstant: 50).isActive = true
           return view
       }()
     
     private lazy var passwordContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "icons8-name-100"), textField: passwordTextField)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passwordTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
     }()
     
     private lazy var accountTypeContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "icons8-event-accepted-tentatively-100"), segentedControl: accountTypeSegmentedControl)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_account_box_white_2x"), segentedControl: accountTypeSegmentedControl)
         view.heightAnchor.constraint(equalToConstant: 80).isActive = true
         return view
     }()
@@ -71,7 +73,7 @@ class SignUpViewController: UIViewController {
     }()
     
     private let accountTypeSegmentedControl: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["Student", "Academic staff","Non-Academic staff"])
+        let sc = UISegmentedControl(items: ["Student", "Staff"])
         sc.backgroundColor = .backgroundColor
         sc.tintColor = UIColor(white: 1, alpha: 0.87)
         sc.selectedSegmentIndex = 0
@@ -107,6 +109,24 @@ class SignUpViewController: UIViewController {
         UI()
     }
     
+    func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
+        REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
+            
+            //handle error
+            
+            let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .map({$0 as? UIWindowScene})
+                .compactMap({$0})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+            
+            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
+            controller.configure()
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     // MARK: - Functions
     func UI() {
         view.backgroundColor = .backgroundColor
@@ -136,13 +156,6 @@ class SignUpViewController: UIViewController {
         guard let address = addressTextField.text else { return }
         let accountType = accountTypeSegmentedControl.selectedSegmentIndex
         
-        let values = [
-            "email": email,
-            "fullName": fullName,
-            "address": address,
-            "accountType": accountType
-            ] as [String : Any]
-        
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("ERROR: Registration error \(error)")
@@ -151,12 +164,34 @@ class SignUpViewController: UIViewController {
             
             guard let uid = result?.user.uid else { return }
             
-            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
-                
-                print("Success: Successfuly Registerd...")
-            }
+            let values = [
+                "email": email,
+                "fullName": fullName,
+                "address": address,
+                "accountType": accountType
+                ] as [String : Any]
+            
+            if accountType == 0 || accountType == 1 {
+            
+            let geoFire = GeoFire(firebaseRef: REF_USER_LOCATIONS)
+            guard let location = self.location else { return }
+            
+            geoFire.setLocation(location, forKey: uid, withCompletionBlock: { (error) in
+                self.uploadUserDataAndShowHomeController(uid: uid, values: values)
+            })
         }
+        
+        self.uploadUserDataAndShowHomeController(uid: uid, values: values)
     }
+}
+            
+//            guard let uid = result?.user.uid else { return }
+//
+//            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
+//
+//                print("Success: Successfuly Registerd...")
+//            }
+//        }
     
     @objc func handleShowLogIn() {
         navigationController?.popViewController(animated: true)

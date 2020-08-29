@@ -10,6 +10,13 @@
 		07FEFA07E8CD2AB89F81C60E /* Pods_M_M_Fayik_COBSCCOMP191P_035.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D2BBC71C74853FAF425CBA /* Pods_M_M_Fayik_COBSCCOMP191P_035.framework */; };
 		115A596F24F1701200AB2946 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A596E24F1701200AB2946 /* UpdateViewController.swift */; };
 		115A597124F1710D00AB2946 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A597024F1710D00AB2946 /* SettingsViewController.swift */; };
+		117C2AB724F62401008549AB /* LocationinputActivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AB624F62401008549AB /* LocationinputActivation.swift */; };
+		117C2AB924F62739008549AB /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AB824F62739008549AB /* LocationInputView.swift */; };
+		117C2ABB24F62B5A008549AB /* LocationHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2ABA24F62B5A008549AB /* LocationHandling.swift */; };
+		117C2ABD24F62FA9008549AB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2ABC24F62FA9008549AB /* Users.swift */; };
+		117C2AC124F6C4FB008549AB /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AC024F6C4FB008549AB /* Services.swift */; };
+		117C2AC324F91855008549AB /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AC224F91855008549AB /* UserAnnotation.swift */; };
+		117C2ACD24FA6D10008549AB /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2ACC24FA6D10008549AB /* LocationTableViewCell.swift */; };
 		1187127424F2E07A00537EB3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187127324F2E07A00537EB3 /* LoginViewController.swift */; };
 		1187127624F2E0B000537EB3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187127524F2E0B000537EB3 /* SignUpViewController.swift */; };
 		1187127824F2E73100537EB3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1187127724F2E73000537EB3 /* GoogleService-Info.plist */; };
@@ -48,6 +55,13 @@
 		01DAB0F552027A222016922A /* Pods-M.M.Fayik-COBSCCOMP191P-035Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M.M.Fayik-COBSCCOMP191P-035Tests.release.xcconfig"; path = "Target Support Files/Pods-M.M.Fayik-COBSCCOMP191P-035Tests/Pods-M.M.Fayik-COBSCCOMP191P-035Tests.release.xcconfig"; sourceTree = "<group>"; };
 		115A596E24F1701200AB2946 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		115A597024F1710D00AB2946 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		117C2AB624F62401008549AB /* LocationinputActivation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationinputActivation.swift; sourceTree = "<group>"; };
+		117C2AB824F62739008549AB /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
+		117C2ABA24F62B5A008549AB /* LocationHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandling.swift; sourceTree = "<group>"; };
+		117C2ABC24F62FA9008549AB /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		117C2AC024F6C4FB008549AB /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		117C2AC224F91855008549AB /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		117C2ACC24FA6D10008549AB /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		1187127324F2E07A00537EB3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1187127524F2E0B000537EB3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1187127724F2E73000537EB3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -66,7 +80,7 @@
 		11DBB6C624F10A4C005546AC /* M.M.Fayik-COBSCCOMP191P-035UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "M.M.Fayik-COBSCCOMP191P-035UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11DBB6CA24F10A4C005546AC /* M_M_Fayik_COBSCCOMP191P_035UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M_M_Fayik_COBSCCOMP191P_035UITests.swift; sourceTree = "<group>"; };
 		11DBB6CC24F10A4C005546AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11DBB6DE24F10BA1005546AC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		11DBB6DE24F10BA1005546AC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		20D2BBC71C74853FAF425CBA /* Pods_M_M_Fayik_COBSCCOMP191P_035.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_M_M_Fayik_COBSCCOMP191P_035.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E50A0EF0C8DFC185982BCC /* Pods-M.M.Fayik-COBSCCOMP191P-035-M.M.Fayik-COBSCCOMP191P-035UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M.M.Fayik-COBSCCOMP191P-035-M.M.Fayik-COBSCCOMP191P-035UITests.release.xcconfig"; path = "Target Support Files/Pods-M.M.Fayik-COBSCCOMP191P-035-M.M.Fayik-COBSCCOMP191P-035UITests/Pods-M.M.Fayik-COBSCCOMP191P-035-M.M.Fayik-COBSCCOMP191P-035UITests.release.xcconfig"; sourceTree = "<group>"; };
 		386539D9230FEE061B3AE67E /* Pods-M.M.Fayik-COBSCCOMP191P-035-M.M.Fayik-COBSCCOMP191P-035UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M.M.Fayik-COBSCCOMP191P-035-M.M.Fayik-COBSCCOMP191P-035UITests.debug.xcconfig"; path = "Target Support Files/Pods-M.M.Fayik-COBSCCOMP191P-035-M.M.Fayik-COBSCCOMP191P-035UITests/Pods-M.M.Fayik-COBSCCOMP191P-035-M.M.Fayik-COBSCCOMP191P-035UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				1187127924F2EEA900537EB3 /* Extensions.swift */,
+				117C2ABA24F62B5A008549AB /* LocationHandling.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -174,6 +189,7 @@
 		11DBB6DA24F10B3A005546AC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				117C2AC024F6C4FB008549AB /* Services.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -182,6 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				1187127B24F2F16300537EB3 /* AuthenticationUIButton.swift */,
+				117C2AB624F62401008549AB /* LocationinputActivation.swift */,
+				117C2AB824F62739008549AB /* LocationInputView.swift */,
+				117C2ACC24FA6D10008549AB /* LocationTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +208,8 @@
 		11DBB6DC24F10B42005546AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				117C2ABC24F62FA9008549AB /* Users.swift */,
+				117C2AC224F91855008549AB /* UserAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -471,11 +492,18 @@
 				11DBB6DF24F10BA1005546AC /* HomeViewController.swift in Sources */,
 				1187127A24F2EEA900537EB3 /* Extensions.swift in Sources */,
 				1187127E24F3EB5000537EB3 /* TabBarViewController.swift in Sources */,
+				117C2AB724F62401008549AB /* LocationinputActivation.swift in Sources */,
 				11DBB6A624F10A4A005546AC /* AppDelegate.swift in Sources */,
 				11DBB6B024F10A4A005546AC /* M_M_Fayik_COBSCCOMP191P_035.xcdatamodeld in Sources */,
+				117C2AC324F91855008549AB /* UserAnnotation.swift in Sources */,
+				117C2ABD24F62FA9008549AB /* Users.swift in Sources */,
+				117C2AB924F62739008549AB /* LocationInputView.swift in Sources */,
 				1187127424F2E07A00537EB3 /* LoginViewController.swift in Sources */,
+				117C2ABB24F62B5A008549AB /* LocationHandling.swift in Sources */,
 				115A596F24F1701200AB2946 /* UpdateViewController.swift in Sources */,
 				1187127624F2E0B000537EB3 /* SignUpViewController.swift in Sources */,
+				117C2AC124F6C4FB008549AB /* Services.swift in Sources */,
+				117C2ACD24FA6D10008549AB /* LocationTableViewCell.swift in Sources */,
 				115A597124F1710D00AB2946 /* SettingsViewController.swift in Sources */,
 				1187127C24F2F16300537EB3 /* AuthenticationUIButton.swift in Sources */,
 			);

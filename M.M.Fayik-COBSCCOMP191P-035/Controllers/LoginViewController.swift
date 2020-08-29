@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
     
     private lazy var emailContainerView: UIView = {
         
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "icons8-image-100"), textField: emailTextField)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_mail_outline_white_2x"), textField: emailTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
         
@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
     
     private lazy var passwordContainerView: UIView = {
         
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "icons8-more-100"), textField: passwordTextField)
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passwordTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return view
         
@@ -135,8 +135,8 @@ class LoginViewController: UIViewController {
                 .filter({$0.isKeyWindow}).first
             
 
-            guard let controller = keyWindow?.rootViewController as? TabBarViewController else { return }
-            controller.configureUi()
+            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
+            controller.configure()
             
             
             self.dismiss(animated: true, completion: nil)
