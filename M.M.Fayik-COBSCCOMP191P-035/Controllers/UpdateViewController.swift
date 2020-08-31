@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseAuth
 
 class UpdateViewController: UIViewController {
 
@@ -14,6 +16,21 @@ class UpdateViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.red
+        
+        checkIsUserLoggedIn()
+     //   tabBarController?.tabBar.isHidden = true
     }
     
+    func checkIsUserLoggedIn() {
+        if(Auth.auth().currentUser?.uid == nil) {
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginViewController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        } else {
+            view.backgroundColor = UIColor.darkGray
+            print("Start the survey")
+        }
+    }
 }

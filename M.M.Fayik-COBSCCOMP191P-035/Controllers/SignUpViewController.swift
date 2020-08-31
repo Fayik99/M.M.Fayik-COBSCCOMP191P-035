@@ -81,8 +81,8 @@ class SignUpViewController: UIViewController {
         return sc
     }()
     
-    private let signUpButton: AuthenticationUIButton = {
-        let button = AuthenticationUIButton(type: .system)
+    private let signUpButton: AuthUIButton = {
+        let button = AuthUIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)

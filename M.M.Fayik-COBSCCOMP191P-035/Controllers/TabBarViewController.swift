@@ -9,11 +9,9 @@
 import UIKit
 import MapKit
 
-class TabBarViewController: UIViewController {
+class TabBarViewController: UITabBarController {
     
-  //  private let mapView = MKMapView()
-  // private let locationManager = CLLocationManager()
-    let tabBar = UITabBarController()
+  //  let tabBar = UITabBarController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +32,9 @@ class TabBarViewController: UIViewController {
         settingsViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-settings-100")
         settingsViewController.tabBarItem.title = "SETTINGS"
         
-        tabBar.viewControllers = [homeViewController,updateViewController,settingsViewController]
-        self.view.addSubview(tabBar.view)
+//        tabBar.viewControllers = [homeViewController,updateViewController,settingsViewController]
+//        self.view.addSubview(tabBar.view)
+        viewControllers = [homeViewController,updateViewController,settingsViewController]
+        
     }
-//    func configureUi()
-//    {
-//        tab()
-//        view.addSubview(mapView)
-//        mapView.sizeToFit()
-//
-//        mapView.showsUserLocation = true
-//        mapView.userTrackingMode = .follow
-//    }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
 
@@ -21,6 +22,13 @@ class LoginViewController: UIViewController {
         label.textColor = UIColor(white: 1, alpha: 0.8)
         
         return label
+    }()
+    
+    private lazy var logoImage: UIImageView = {
+        
+       let imageView = UIImageView(image: #imageLiteral(resourceName: "NIBM-GOLD"))
+       return imageView
+        
     }()
     
     private lazy var emailContainerView: UIView = {
@@ -52,8 +60,8 @@ class LoginViewController: UIViewController {
         
     }()
     
-    private let loginButton: AuthenticationUIButton = {
-        let button = AuthenticationUIButton(type: .system)
+    private let loginButton: AuthUIButton = {
+        let button = AuthUIButton(type: .system)
         button.setTitle("Log In", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handleSignIn), for: .touchUpInside)
@@ -90,6 +98,9 @@ class LoginViewController: UIViewController {
         apptitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         apptitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
+        view.addSubview(logoImage)
+        logoImage.anchor(top: apptitleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 25, paddingRight: 25, width: 35, height: 140)
+        
         let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
         stack.axis = .vertical
         stack.distribution = .fillEqually
@@ -97,7 +108,7 @@ class LoginViewController: UIViewController {
         
         view.addSubview(stack)
         
-        stack.anchor(top: apptitleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+        stack.anchor(top: logoImage.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 16, paddingRight: 16)
         
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.centerX(inView: view)
@@ -124,22 +135,49 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            let context = LAContext()
+            var error: NSError?
+            
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                let reason = "Identify yourself!"
+                
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                    [weak self] success, authenticationError in
+                    
+                    DispatchQueue.main.async {
+                        if success {
+                            let ac = UIAlertController(title: "Authentication success", message: "Access granted", preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .default))
+                            self?.present(ac, animated: true)
+                        } else {
+                            let ac = UIAlertController(title: "Authentication failed", message: "You could not be verified; please try again", preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .default))
+                            self?.present(ac, animated: true)
+                        }
+                    }
+                }
+            } else {
+                let ac = UIAlertController(title: "Biometrics unavailable", message: "Your device is not configured for biometric authentication", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(ac, animated: true)
+            }
+            
             print("Success: Login Successful")
             
                        
-            let keyWindow = UIApplication.shared.connectedScenes
-                .filter({$0.activationState == .foregroundActive})
-                .map({$0 as? UIWindowScene})
-                .compactMap({$0})
-                .first?.windows
-                .filter({$0.isKeyWindow}).first
-            
+//            let keyWindow = UIApplication.shared.connectedScenes
+//                .filter({$0.activationState == .foregroundActive})
+//                .map({$0 as? UIWindowScene})
+//                .compactMap({$0})
+//                .first?.windows
+//                .filter({$0.isKeyWindow}).first
 
-            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
-            controller.configure()
-            
-            
-            self.dismiss(animated: true, completion: nil)
+
+//            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
+//          controller.configure()
+            self.perform(#selector(self.tabBar), with: nil, afterDelay: 0.01)
+            self.perform(#selector(self.showHomeController), with: nil, afterDelay: 0.02)
+            //self.dismiss(animated: true, completion: nil)
             
         }
     }
@@ -149,5 +187,19 @@ class LoginViewController: UIViewController {
         let signUp = SignUpViewController()
         navigationController?.pushViewController(signUp, animated: true)
     }
+    @objc func showHomeController() {
+        let home = HomeViewController()
+        home.modalPresentationStyle = .fullScreen
+        present(home, animated: true, completion: {
+            home.configure()
+        })
+    }
+    @objc func tabBar() {
+       let tab = TabBarViewController()
+        tab.modalPresentationStyle = .currentContext
+           present(tab, animated: true, completion: {
+               tab.tab()
+           })
+       }
 }
 

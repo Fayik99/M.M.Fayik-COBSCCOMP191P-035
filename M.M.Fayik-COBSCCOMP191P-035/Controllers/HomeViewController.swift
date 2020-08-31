@@ -63,11 +63,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         checkIsUserLoggedIn()
+        //signOut()
         AccessLocationServices()
         
-        //signOut()
+       
         
-        view.backgroundColor = .white
+       view.backgroundColor = .white
     }
     
     // MARK: - Selectors
@@ -122,31 +123,31 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
-    func checkIsUserLoggedIn() {
-        if(Auth.auth().currentUser?.uid == nil) {
-            DispatchQueue.main.async {
-                let nav = UINavigationController(rootViewController: LoginViewController())
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
+
+        func checkIsUserLoggedIn() {
+            if(Auth.auth().currentUser?.uid == nil) {
+                DispatchQueue.main.async {
+                    let nav = UINavigationController(rootViewController: LoginViewController())
+                    nav.modalPresentationStyle = .fullScreen
+                    self.present(nav, animated: true, completion: nil)
+                }
+            } else {
+                configure()
             }
-        } else {
-            configure()
         }
-    }
     
-    func signOut() {
-        do {
-            try Auth.auth().signOut()
-            DispatchQueue.main.async {
-                let nav = UINavigationController(rootViewController: LoginViewController())
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
+        func signOut() {
+            do {
+                try Auth.auth().signOut()
+                DispatchQueue.main.async {
+                    let nav = UINavigationController(rootViewController: LoginViewController())
+                    nav.modalPresentationStyle = .fullScreen
+                    self.present(nav, animated: true, completion: nil)
+                }
+            } catch {
+                print("DEBUG: Sign out error")
             }
-        } catch {
-            print("DEBUG: sign out error")
         }
-    }
     
     // MARK: - Helper Function
     
@@ -164,6 +165,8 @@ class HomeViewController: UIViewController {
     func configure() {
         configureUi()
         fetchUserData()
+      //  fetchUsers()
+    
     }
     
     func configureUi() {
@@ -175,6 +178,7 @@ class HomeViewController: UIViewController {
         
         
         configureTableView()
+
     }
     
     func configureLocationInputActivationView() {
