@@ -21,15 +21,15 @@ class TabBarViewController: UITabBarController {
     func tab() {
         
         let homeViewController = HomeViewController()
-        homeViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-home-page-100")
+        homeViewController.tabBarItem.image = #imageLiteral(resourceName: "Home2x")
         homeViewController.tabBarItem.title = "HOME"
         
         let updateViewController = UpdateViewController()
-        updateViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-add-100")
+        updateViewController.tabBarItem.image = #imageLiteral(resourceName: "Plus2x")
         updateViewController.tabBarItem.title = "UPDATE"
         
         let settingsViewController = SettingsViewController()
-        settingsViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-settings-100")
+        settingsViewController.tabBarItem.image = #imageLiteral(resourceName: "Settings2x")
         settingsViewController.tabBarItem.title = "SETTINGS"
         
 //        tabBar.viewControllers = [homeViewController,updateViewController,settingsViewController]

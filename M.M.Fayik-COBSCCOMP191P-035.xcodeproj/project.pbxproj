@@ -18,6 +18,9 @@
 		117C2AC324F91855008549AB /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AC224F91855008549AB /* UserAnnotation.swift */; };
 		117C2ACD24FA6D10008549AB /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2ACC24FA6D10008549AB /* LocationTableViewCell.swift */; };
 		117C2ACF24FD6359008549AB /* AuthUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2ACE24FD6359008549AB /* AuthUIButton.swift */; };
+		117C2AD724FE69CF008549AB /* CvSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AD624FE69CF008549AB /* CvSurveyViewController.swift */; };
+		117C2AD924FE6AAA008549AB /* SurveyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AD824FE6AAA008549AB /* SurveyCollectionViewCell.swift */; };
+		117C2ADB24FE6B04008549AB /* SurveyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2ADA24FE6B04008549AB /* SurveyResultViewController.swift */; };
 		1187127424F2E07A00537EB3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187127324F2E07A00537EB3 /* LoginViewController.swift */; };
 		1187127624F2E0B000537EB3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187127524F2E0B000537EB3 /* SignUpViewController.swift */; };
 		1187127824F2E73100537EB3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1187127724F2E73000537EB3 /* GoogleService-Info.plist */; };
@@ -63,6 +66,9 @@
 		117C2AC224F91855008549AB /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		117C2ACC24FA6D10008549AB /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		117C2ACE24FD6359008549AB /* AuthUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUIButton.swift; sourceTree = "<group>"; };
+		117C2AD624FE69CF008549AB /* CvSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvSurveyViewController.swift; sourceTree = "<group>"; };
+		117C2AD824FE6AAA008549AB /* SurveyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCollectionViewCell.swift; sourceTree = "<group>"; };
+		117C2ADA24FE6B04008549AB /* SurveyResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyResultViewController.swift; sourceTree = "<group>"; };
 		1187127324F2E07A00537EB3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1187127524F2E0B000537EB3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1187127724F2E73000537EB3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -223,6 +229,9 @@
 				1187127324F2E07A00537EB3 /* LoginViewController.swift */,
 				1187127524F2E0B000537EB3 /* SignUpViewController.swift */,
 				1187127D24F3EB5000537EB3 /* TabBarViewController.swift */,
+				117C2AD624FE69CF008549AB /* CvSurveyViewController.swift */,
+				117C2AD824FE6AAA008549AB /* SurveyCollectionViewCell.swift */,
+				117C2ADA24FE6B04008549AB /* SurveyResultViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -499,12 +508,15 @@
 				117C2ABD24F62FA9008549AB /* Users.swift in Sources */,
 				117C2AB924F62739008549AB /* LocationInputView.swift in Sources */,
 				1187127424F2E07A00537EB3 /* LoginViewController.swift in Sources */,
+				117C2AD924FE6AAA008549AB /* SurveyCollectionViewCell.swift in Sources */,
 				117C2ACF24FD6359008549AB /* AuthUIButton.swift in Sources */,
 				117C2ABB24F62B5A008549AB /* LocationHandling.swift in Sources */,
 				115A596F24F1701200AB2946 /* UpdateViewController.swift in Sources */,
+				117C2ADB24FE6B04008549AB /* SurveyResultViewController.swift in Sources */,
 				1187127624F2E0B000537EB3 /* SignUpViewController.swift in Sources */,
 				117C2AC124F6C4FB008549AB /* Services.swift in Sources */,
 				117C2ACD24FA6D10008549AB /* LocationTableViewCell.swift in Sources */,
+				117C2AD724FE69CF008549AB /* CvSurveyViewController.swift in Sources */,
 				115A597124F1710D00AB2946 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

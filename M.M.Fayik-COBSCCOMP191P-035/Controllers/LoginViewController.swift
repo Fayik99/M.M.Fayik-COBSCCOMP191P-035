@@ -139,14 +139,14 @@ class LoginViewController: UIViewController {
             var error: NSError?
             
             if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                let reason = "Identify yourself!"
+                let reason = "Authentication Success"
                 
                 context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
                     [weak self] success, authenticationError in
                     
                     DispatchQueue.main.async {
                         if success {
-                            let ac = UIAlertController(title: "Authentication success", message: "Access granted", preferredStyle: .alert)
+                            let ac = UIAlertController(title: "Authentication Success", message: "Access granted", preferredStyle: .alert)
                             ac.addAction(UIAlertAction(title: "OK", style: .default))
                             self?.present(ac, animated: true)
                         } else {
@@ -175,8 +175,10 @@ class LoginViewController: UIViewController {
 
 //            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
 //          controller.configure()
+            
             self.perform(#selector(self.tabBar), with: nil, afterDelay: 0.01)
             self.perform(#selector(self.showHomeController), with: nil, afterDelay: 0.02)
+            
             //self.dismiss(animated: true, completion: nil)
             
         }
@@ -186,6 +188,8 @@ class LoginViewController: UIViewController {
         
         let signUp = SignUpViewController()
         navigationController?.pushViewController(signUp, animated: true)
+        
+    // MARK: Navigate functions
     }
     @objc func showHomeController() {
         let home = HomeViewController()

@@ -15,6 +15,7 @@ extension UIColor {
     }
     
     static let backgroundColor = rgb(red: 25, green: 25, blue: 25)
+    //static let backgroundColor = rgb(red: 62, green: 188, blue: 155)
     static let mainBlueTint = rgb(red: 17, green: 154, blue: 237)
 }
 
