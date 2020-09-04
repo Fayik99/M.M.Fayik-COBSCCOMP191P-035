@@ -19,9 +19,9 @@ class UpdateViewController: UIViewController {
        // button.setTitle("Back", for: .normal)
         button.setBackgroundImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp"), for: .normal)
        // button.backgroundColor = UIColor.blue
-      //  button.titleLabel?.textColor = UIColor.white
+       //  button.titleLabel?.textColor = UIColor.white
        // button.layer.borderColor = UIColor.darkGray.cgColor
-      //  button.layer.borderWidth = 3.0
+       //  button.layer.borderWidth = 3.0
         button.addTarget(self, action: #selector(showHomeController), for: UIControl.Event.touchUpInside)
         
         return button
@@ -49,6 +49,18 @@ class UpdateViewController: UIViewController {
        return txtField
     }()
     
+    private let LastUpdateLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Body Temparature"
+        label.font = UIFont(name: "Avenir-Light", size: 30)
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    
     private let SubmitTempButton: AuthUIButton = {
         let button = AuthUIButton(type: .system)
         button.setTitle("Update Temparature", for: .normal)
@@ -73,22 +85,22 @@ class UpdateViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
          checkIsUserLoggedIn()
-       //  setUI()
-     //   tabBarController?.tabBar.isHidden = true
+      //  setUI()
+      // tabBarController?.tabBar.isHidden = true
     }
     
-        func checkIsUserLoggedIn() {
-            if(Auth.auth().currentUser?.uid == nil) {
-                DispatchQueue.main.async {
-                    let nav = UINavigationController(rootViewController: LoginViewController())
-                    nav.modalPresentationStyle = .fullScreen
-                    self.present(nav, animated: true, completion: nil)
-                }
-            } else {
-                   setUI()
+    func checkIsUserLoggedIn() {
+        if(Auth.auth().currentUser?.uid == nil) {
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginViewController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
             }
+        } else {
+            setUI()
         }
-      
+    }
+        
     func setUI() {
         
         view.addSubview(BackButton)
@@ -97,15 +109,28 @@ class UpdateViewController: UIViewController {
         view.addSubview(StartSurveyButton)
         StartSurveyButton.anchor(top: BackButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 20, paddingRight: 20)
         
+        view.addSubview(LastUpdateLabel)
+        LastUpdateLabel.anchor(top: StartSurveyButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 50, paddingRight: 50)
+        
         let stack = UIStackView(arrangedSubviews: [updateTempContainer, SubmitTempButton])
         view.addSubview(stack)
         stack.axis = .vertical
         
         stack.distribution = .fillEqually
         stack.spacing = 20
-        stack.anchor(top: StartSurveyButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 20, paddingRight: 20)
+        stack.anchor(top: LastUpdateLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 20, paddingRight: 20)
         
-        
+        let userID = Auth.auth().currentUser?.uid
+        Database.database().reference().child("user temparature").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user body temparature value
+            let value = snapshot.value as? NSDictionary
+            let temparature = value?["Body Temparature"] as? String ?? ""
+            self.LastUpdateLabel.text = "Last Update: \(temparature)"+"c"
+            
+            // ...
+        }) { (error) in
+            print("Body temparature not found")
+        }
     }
     
     @objc func showSurveyController() {
@@ -125,17 +150,17 @@ class UpdateViewController: UIViewController {
     @objc func TempUpdateFb() {
         
         guard let TempUpdate = tempUpdate.text else { return }
-        
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
         let values = [
             "Body Temparature": TempUpdate,
             ] as [String : Any]
         
-    
         Database.database().reference().child("user temparature").child(userID).updateChildValues(values) { (error, ref) in
                 
-                print("DEBUG: Data saved.")
+            print("DEBUG: Data saved...")
+            self.setUI()
+            self.tempUpdate.text = ""
             }
         }
     }
