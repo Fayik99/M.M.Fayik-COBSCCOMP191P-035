@@ -42,7 +42,7 @@ class UpdateViewController: UIViewController {
     private let tempUpdate: UITextField = {
         
        let txtField = UITextField()
-       txtField.placeholder = ("Update Temparature")
+       txtField.placeholder = ("Update Temperature")
         txtField.keyboardType = .numberPad
        txtField.isSecureTextEntry = false
 
@@ -52,7 +52,7 @@ class UpdateViewController: UIViewController {
     private let LastUpdateLabel: UILabel = {
         
         let label = UILabel()
-        label.text = "Body Temparature"
+        label.text = "Body Temperature"
         label.font = UIFont(name: "Avenir-Light", size: 30)
         label.textColor = UIColor.black
         label.textAlignment = .center
@@ -63,7 +63,7 @@ class UpdateViewController: UIViewController {
     
     private let SubmitTempButton: AuthUIButton = {
         let button = AuthUIButton(type: .system)
-        button.setTitle("Update Temparature", for: .normal)
+        button.setTitle("Update Temperature", for: .normal)
         button.backgroundColor = UIColor.black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
@@ -121,15 +121,15 @@ class UpdateViewController: UIViewController {
         stack.anchor(top: LastUpdateLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 20, paddingRight: 20)
         
         let userID = Auth.auth().currentUser?.uid
-        Database.database().reference().child("user temparature").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("user temperature").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user body temparature value
             let value = snapshot.value as? NSDictionary
-            let temparature = value?["Body Temparature"] as? String ?? ""
+            let temparature = value?["Body Temperature"] as? String ?? ""
             self.LastUpdateLabel.text = "Last Update: \(temparature)"+"c"
             
             // ...
         }) { (error) in
-            print("Body temparature not found")
+            print("Body temperature not found")
         }
     }
     
@@ -153,10 +153,10 @@ class UpdateViewController: UIViewController {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
         let values = [
-            "Body Temparature": TempUpdate,
+            "Body Temperature": TempUpdate,
             ] as [String : Any]
         
-        Database.database().reference().child("user temparature").child(userID).updateChildValues(values) { (error, ref) in
+        Database.database().reference().child("user temperature").child(userID).updateChildValues(values) { (error, ref) in
                 
             print("DEBUG: Data saved...")
             self.setUI()
