@@ -46,7 +46,6 @@ class HomeViewController: UIViewController {
             } else {
                 print("Invalid acoountType")
             }
-            
         }
     }
     

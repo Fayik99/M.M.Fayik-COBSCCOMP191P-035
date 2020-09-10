@@ -43,7 +43,7 @@ class UpdateViewController: UIViewController {
         
        let txtField = UITextField()
        txtField.placeholder = ("Update Temperature")
-        txtField.keyboardType = .numberPad
+       txtField.keyboardType = .decimalPad
        txtField.isSecureTextEntry = false
 
        return txtField
@@ -121,11 +121,11 @@ class UpdateViewController: UIViewController {
         stack.anchor(top: LastUpdateLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 20, paddingRight: 20)
         
         let userID = Auth.auth().currentUser?.uid
-        Database.database().reference().child("user temperature").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user body temparature value
             let value = snapshot.value as? NSDictionary
-            let temparature = value?["Body Temperature"] as? String ?? ""
-            self.LastUpdateLabel.text = "Last Update: \(temparature)"+"c"
+            let temparature = value?["bodyTemperature"] as? String ?? ""
+            self.LastUpdateLabel.text = "Last Update: \(temparature)"+"'C"
             
             // ...
         }) { (error) in
@@ -153,15 +153,24 @@ class UpdateViewController: UIViewController {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
         let values = [
-            "Body Temperature": TempUpdate,
+            "bodyTemperature": TempUpdate,
             ] as [String : Any]
         
-        Database.database().reference().child("user temperature").child(userID).updateChildValues(values) { (error, ref) in
+        if TempUpdate.isEmpty {
+            
+            let ac = UIAlertController(title: "Temperature Update", message: "Type your temperature", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        }
+        else {
+           // Database.database().reference().child("user temperature").child(userID).updateChildValues(values) { (error, ref) in
+            Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
                 
-            print("DEBUG: Data saved...")
-            self.setUI()
-            self.tempUpdate.text = ""
+                print("DEBUG: Data saved...")
+                self.setUI()
+                self.tempUpdate.text = ""
             }
+        }
         }
     }
 
