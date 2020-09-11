@@ -104,7 +104,7 @@ class UpdateViewController: UIViewController {
     func setUI() {
         
         view.addSubview(BackButton)
-        BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 20, paddingLeft: 15, width: 30, height: 25)
+        BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 20, paddingLeft: 12, width: 30, height: 25)
         
         view.addSubview(StartSurveyButton)
         StartSurveyButton.anchor(top: BackButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 20, paddingRight: 20)

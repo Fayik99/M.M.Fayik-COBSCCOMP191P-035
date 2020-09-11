@@ -101,7 +101,7 @@ class SettingsViewController: UIViewController {
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
         view.addSubview(BackButton)
-        BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 15, width: 30, height: 25)
+        BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
         
         view.addSubview(ProfileButton)
         ProfileButton.anchor(top: titleLabel.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 35, paddingLeft: 12, paddingRight: 0)

@@ -29,7 +29,7 @@ class ContactUsViewController: UIViewController {
     func LoadUI() {
         
         view.addSubview(BackButton)
-        BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 15, width: 30, height: 25)
+        BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
         
         
     }
