@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseCore
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController {
 
@@ -40,6 +44,19 @@ class ProfileViewController: UIViewController {
         return button
     }()
 
+    private let updateButton: AuthUIButton = {
+        
+        let button = AuthUIButton(type: .system)
+        button.setTitle("U P D A T E", for: .normal)
+        button.backgroundColor = UIColor.black
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
+      //  button.addTarget(self, action: #selector(update), for: UIControl.Event.touchUpInside)
+        
+        return button
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,6 +77,21 @@ class ProfileViewController: UIViewController {
         view.addSubview(nameLabel)
         nameLabel.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40)
         
+        
+        view.addSubview(updateButton)
+        updateButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 0, paddingRight: 0)
+        
+        let userID = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user name value
+            let value = snapshot.value as? NSDictionary
+            let name = value?["fullName"] as? String ?? ""
+            self.nameLabel.text = name
+            
+            // ...
+        }) { (error) in
+            print("Name not found")
+        }
     }
     
     @objc func showSettingsController() {
@@ -69,5 +101,4 @@ class ProfileViewController: UIViewController {
             // Back
         })
     }
-
 }

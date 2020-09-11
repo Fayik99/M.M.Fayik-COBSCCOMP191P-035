@@ -90,8 +90,28 @@ class SettingsViewController: UIViewController {
 
         view.backgroundColor = UIColor.white
         tabBarController?.tabBar.isHidden = true
-        LoadUI()
+        checkIsUserLoggedIn()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        view.backgroundColor = UIColor.white
+        tabBarController?.tabBar.isHidden = true
+        checkIsUserLoggedIn()
+    }
+    
+    func checkIsUserLoggedIn() {
+           if(Auth.auth().currentUser?.uid == nil) {
+               DispatchQueue.main.async {
+                   let nav = UINavigationController(rootViewController: LoginViewController())
+                   nav.modalPresentationStyle = .fullScreen
+                   self.present(nav, animated: true, completion: nil)
+               }
+           } else {
+               LoadUI()
+           }
+       }
     
     func LoadUI() {
         
@@ -121,11 +141,10 @@ class SettingsViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             DispatchQueue.main.async {
-//              let nav = UINavigationController(rootViewController: HomeViewController())
                 let nav = TabBarViewController()
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: {
-                     //  Back to home
+                    //  Back to home
                 })
             }
         } catch {

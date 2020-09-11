@@ -130,8 +130,12 @@ class LoginViewController: UIViewController {
         guard let password = passwordTextField.text else { return }
         
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                print("ERROR: Login Failed \(error.localizedDescription)")
+            if (error != nil) {
+                //print("ERROR: Login Failed \(error.localizedDescription)")
+                let ac = UIAlertController(title: "Login failed", message: "Incorrect email or password", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(ac, animated: true)
+                
                 return
             }
             
@@ -163,6 +167,8 @@ class LoginViewController: UIViewController {
             }
             
             print("Success: Login Successful")
+           // self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
             
                        
 //            let keyWindow = UIApplication.shared.connectedScenes
@@ -176,10 +182,10 @@ class LoginViewController: UIViewController {
 //            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
 //          controller.configure()
             
-            self.perform(#selector(self.tabBar), with: nil, afterDelay: 0.01)
-            self.perform(#selector(self.showHomeController), with: nil, afterDelay: 0.02)
+//            self.perform(#selector(self.tabBar), with: nil, afterDelay: 0.01)
+//            self.perform(#selector(self.showHomeController), with: nil, afterDelay: 0.02)
             
-            //self.dismiss(animated: true, completion: nil)
+             //self.dismiss(animated: true, completion: nil)
             
         }
     }
@@ -191,19 +197,19 @@ class LoginViewController: UIViewController {
         
     // MARK: Navigate functions
     }
-    @objc func showHomeController() {
-        let home = HomeViewController()
-        home.modalPresentationStyle = .fullScreen
-        present(home, animated: true, completion: {
-            home.configure()
-        })
-    }
-    @objc func tabBar() {
-       let tab = TabBarViewController()
-        tab.modalPresentationStyle = .currentContext
-           present(tab, animated: true, completion: {
-               tab.tab()
-           })
-       }
+//    @objc func showHomeController() {
+//        let home = HomeViewController()
+//        home.modalPresentationStyle = .fullScreen
+//        present(home, animated: true, completion: {
+//            home.configure()
+//        })
+//    }
+//    @objc func tabBar() {
+//       let tab = TabBarViewController()
+//        tab.modalPresentationStyle = .currentContext
+//           present(tab, animated: true, completion: {
+//               tab.tab()
+//           })
+//       }
 }
 

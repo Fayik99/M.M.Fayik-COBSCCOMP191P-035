@@ -29,6 +29,33 @@ class ContactUsViewController: UIViewController {
         return button
     }()
     
+    private let AboutLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "This is an iOS app designed and developed by Fayik Muzammil. This app will help everyone to identify nearby covid 19 patients and avoid going to those places. App will notify you by an alert. Also we provided safe actions you need to follow and keep safe everyone from this pandemic."
+        label.font = UIFont(name: "Avenir-Light", size: 17)
+        label.textColor = UIColor.black
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+//        label.layer.borderColor = UIColor.darkGray.cgColor
+//        label.layer.borderWidth = 3.0
+        
+        return label
+    }()
+    
+    private let copyRightLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "All rights reserved 2020 Fayik Inc"
+        label.font = UIFont(name: "Avenir-Light", size: 13)
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,6 +73,12 @@ class ContactUsViewController: UIViewController {
         view.addSubview(BackButton)
         BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
         
+        view.addSubview(AboutLabel)
+        AboutLabel.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 15, paddingRight: 15, width: 280, height: 190)
+        
+        view.addSubview(copyRightLabel)
+        copyRightLabel.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+
         
     }
     

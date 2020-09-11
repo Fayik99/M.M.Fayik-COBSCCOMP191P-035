@@ -29,7 +29,7 @@ class TabBarViewController: UITabBarController {
         updateViewController.tabBarItem.title = "UPDATE"
         
         let settingsViewController = SettingsViewController()
-        settingsViewController.tabBarItem.image = #imageLiteral(resourceName: "Settings2x")
+        settingsViewController.tabBarItem.image = #imageLiteral(resourceName: "Settings")
         settingsViewController.tabBarItem.title = "SETTINGS"
         
 //        tabBar.viewControllers = [homeViewController,updateViewController,settingsViewController]

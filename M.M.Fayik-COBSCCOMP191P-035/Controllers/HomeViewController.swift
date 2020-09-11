@@ -37,17 +37,18 @@ class HomeViewController: UIViewController {
     private var actionButtonConfig = ActionButtonConfiguration()
     private var route: MKRoute?
     
-    private var users: Users? {
-        didSet {
-            locationInputView.users = users
-            if users?.accountType == .Student || users?.accountType == .Staff {
-                fetchUsers()
-                configureLocationInputActivationView()
-            } else {
-                print("Invalid acoountType")
-            }
-        }
-    }
+//    private var users: Users? {
+//        didSet {
+//            locationInputView.users = users
+//            if users?.accountType == .Student || users?.accountType == .Staff  {
+//                configure()
+//                fetchUsers()
+//                configureLocationInputActivationView()
+//            } else {
+//                print("Invalid acoountType")
+//            }
+//        }
+//    }
     
     private let actionButton: UIButton = {
         let button = UIButton(type: .system)
@@ -61,8 +62,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkIsUserLoggedIn()
+        //checkIsUserLoggedIn()
         //signOut()
+        configure()
+        configureLocationInputActivationView()
         AccessLocationServices()
         
        view.backgroundColor = .white
@@ -87,13 +90,13 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func fetchUserData() {
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-        
-        Services.shared.fetchUserData(uid: currentUid) { (users) in
-            self.users = users
-        }
-    }
+//    func fetchUserData() {
+//        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+//
+//        Services.shared.fetchUserData(uid: currentUid) { (users) in
+//            self.users = users
+//        }
+//    }
     
     func fetchUsers() {
         guard let location = locationManager?.location else { return }
@@ -121,17 +124,17 @@ class HomeViewController: UIViewController {
         }
     }
 
-    func checkIsUserLoggedIn() {
-        if(Auth.auth().currentUser?.uid == nil) {
-            DispatchQueue.main.async {
-                let nav = UINavigationController(rootViewController: LoginViewController())
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
-            }
-        } else {
-            configure()
-        }
-    }
+//    func checkIsUserLoggedIn() {
+//        if(Auth.auth().currentUser?.uid == nil) {
+//            DispatchQueue.main.async {
+//                let nav = UINavigationController(rootViewController: LoginViewController())
+//                nav.modalPresentationStyle = .fullScreen
+//                self.present(nav, animated: true, completion: nil)
+//            }
+//        } else {
+//            configure()
+//        }
+//    }
     
 //        func signOut() {
 //            do {
@@ -161,8 +164,8 @@ class HomeViewController: UIViewController {
     
     func configure() {
         configureUi()
-        fetchUserData()
-      //  fetchUsers()
+      //fetchUserData()
+       fetchUsers()
     
     }
     
@@ -172,7 +175,7 @@ class HomeViewController: UIViewController {
         view.addSubview(actionButton)
         actionButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
                             paddingTop: 16, paddingLeft: 20, width: 30, height: 30)
-        
+
         
         configureTableView()
 

@@ -85,8 +85,14 @@ class UpdateViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
          checkIsUserLoggedIn()
-      //  setUI()
       // tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        view.backgroundColor = UIColor.white
+        checkIsUserLoggedIn()
     }
     
     func checkIsUserLoggedIn() {
@@ -100,7 +106,7 @@ class UpdateViewController: UIViewController {
             setUI()
         }
     }
-        
+    
     func setUI() {
         
         view.addSubview(BackButton)
