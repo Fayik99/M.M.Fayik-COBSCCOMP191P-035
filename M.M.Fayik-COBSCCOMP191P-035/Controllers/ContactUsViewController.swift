@@ -10,6 +10,16 @@ import UIKit
 
 class ContactUsViewController: UIViewController {
     
+    private let titleLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Contact Us / About Us"
+        label.font = UIFont(name: "Avenir-Light", size: 25)
+        label.textColor = UIColor.black
+        
+        return label
+    }()
+    
     private let BackButton: UIButton = {
         let button = UIButton()
         // button.setTitle("Back", for: .normal)
@@ -22,11 +32,16 @@ class ContactUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = UIColor.white
         LoadUI()
     }
     
     func LoadUI() {
+        
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
         view.addSubview(BackButton)
         BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
