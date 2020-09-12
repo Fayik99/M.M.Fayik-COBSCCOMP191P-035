@@ -144,7 +144,7 @@ class ProfileViewController: UIViewController {
         
         let userID = Auth.auth().currentUser?.uid
         Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user name value
+            // Get user details
             let value = snapshot.value as? NSDictionary
             let name = value?["fullName"] as? String ?? ""
             let address = value?["address"] as? String ?? ""
@@ -153,14 +153,22 @@ class ProfileViewController: UIViewController {
             self.nameLabel.text = name
             self.addressLabel.text = "at \(address)"
             self.tempLabel.text = temparature+"'C"
+            
           
             let imageUrl = URL(string: profilePic)
+            
+            if imageUrl == nil
+            {
+                self.profileImageView.image = #imageLiteral(resourceName: "icons8-name-100")
+            }
+            else {
+            
             let imageData = try! Data(contentsOf: imageUrl!)
             let image = UIImage(data: imageData)
             
             self.profileImageView.image = image!
             
-            
+            }
             // ...
         }) { (error) in
             print("Name not found")
