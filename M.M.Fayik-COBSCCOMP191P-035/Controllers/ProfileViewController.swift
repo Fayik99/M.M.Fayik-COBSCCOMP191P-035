@@ -13,9 +13,12 @@ import FirebaseCore
 import FirebaseDatabase
 import FirebaseStorage
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController{
 
     var selectedImage: UIImage?
+    
+//    let countries = ["Sri Lanka","India","Pakistan","America","England","Japan"]
+//    var pickerView = UIPickerView()
     
     private let titleLabel: UILabel = {
         
@@ -55,7 +58,7 @@ class ProfileViewController: UIViewController {
         button.backgroundColor = UIColor.black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
-        button.addTarget(self, action: #selector(updateAll), for: UIControl.Event.touchUpInside)
+        button.addTarget(self, action: #selector(updateOthers), for: UIControl.Event.touchUpInside)
         
         return button
         
@@ -106,24 +109,59 @@ class ProfileViewController: UIViewController {
          return label
      }()
     
-    private lazy var fullNameContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "FullName"), textField: fullNameTextField )
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        return view
-    }()
-    
-    private lazy var indexContainerView: UIView = {
-        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "IndexNo"), textField: indexTextField )
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        return view
+    private let updatePic: UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("Update Pic", for: .normal)
+        button.backgroundColor = .black
+        button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        button.addTarget(self, action: #selector(updateAll), for: UIControl.Event.touchUpInside)
+        
+        
+       return button
     }()
     
     private let fullNameTextField: UITextField = {
-        return UITextField().textField(withPlaceholder: "Full Name", isSecureTextEntry: false)
+        
+        let name = UITextField()
+        name.borderStyle = .roundedRect
+        name.font = UIFont.systemFont(ofSize: 16)
+        name.textColor = .black
+        name.keyboardAppearance = .dark
+        name.isSecureTextEntry = false
+        name.placeholder = "Full Name"
+        name.textAlignment = .left
+        
+        return name
     }()
     
     private let indexTextField: UITextField = {
-        return UITextField().textField(withPlaceholder: "IndexNo or EmployeeCode", isSecureTextEntry: false)
+        
+        let index = UITextField()
+        index.borderStyle = .roundedRect
+        index.font = UIFont.systemFont(ofSize: 16)
+        index.textColor = .black
+        index.keyboardAppearance = .dark
+        index.isSecureTextEntry = false
+        index.placeholder = "IndexNo / EmployeeCode"
+        index.textAlignment = .left
+        
+        return index
+    }()
+    
+    private let countryDropDown: UITextField = {
+        
+        let con = UITextField()
+        con.borderStyle = .roundedRect
+        con.font = UIFont.systemFont(ofSize: 16)
+        con.textColor = .black
+        con.keyboardAppearance = .dark
+        con.isSecureTextEntry = false
+        con.placeholder = "Country"
+        con.textAlignment = .left
+        
+        return con
     }()
     
     override func viewDidLoad() {
@@ -148,7 +186,7 @@ class ProfileViewController: UIViewController {
         nameLabel.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40)
         
         view.addSubview(profileImageView)
-        profileImageView.anchor(top: nameLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 35, paddingLeft: 150, paddingRight: 150, width: 90, height: 90)
+        profileImageView.anchor(top: nameLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 35, paddingLeft: 150, paddingRight: 150, height: 90)
         
         view.addSubview(ActiveLabel)
         ActiveLabel.anchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 90, paddingRight: 90)
@@ -159,17 +197,24 @@ class ProfileViewController: UIViewController {
         view.addSubview(tempLabel)
         tempLabel.anchor(top: addressLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 90, paddingRight: 90)
         
-        let stack = UIStackView(arrangedSubviews: [fullNameContainerView,indexContainerView])
+        view.addSubview(updatePic)
+        updatePic.anchor(top: tempLabel.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 170, paddingRight: 170)
+        
+        let stack = UIStackView(arrangedSubviews: [fullNameTextField,indexTextField,countryDropDown])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.spacing = 24
         
         view.addSubview(stack)
-        stack.anchor(top: tempLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+        stack.anchor(top: updatePic.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
         
 
         view.addSubview(updateButton)
         updateButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 0, paddingRight: 0)
+        
+//        pickerView.delegate = self
+//        pickerView.dataSource = self
+//        countryDropDown.inputView = pickerView
         
         let userID = Auth.auth().currentUser?.uid
         Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -180,12 +225,14 @@ class ProfileViewController: UIViewController {
             let temparature = value?["bodyTemperature"] as? String ?? ""
             let profilePic = value?["profilePicURL"] as? String ?? ""
             let index = value?["indexOrEmployeeCode"] as? String ?? ""
+            let country = value?["country"] as? String ?? ""
             
             self.nameLabel.text = name
             self.addressLabel.text = "at \(address)"
             self.tempLabel.text = temparature+"'C"
             self.fullNameTextField.text = name
             self.indexTextField.text = index
+            self.countryDropDown.text = country
             
           
             let imageUrl = URL(string: profilePic)
@@ -215,6 +262,24 @@ class ProfileViewController: UIViewController {
         profileImageView.isUserInteractionEnabled = true
     }
     
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return countries.count
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return countries[row]
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        countryDropDown.text = countries[row]
+//        countryDropDown.resignFirstResponder()
+//    }
+//
     @objc func showSettingsController() {
         let set = SettingsViewController()
         set.modalPresentationStyle = .fullScreen
@@ -245,18 +310,43 @@ class ProfileViewController: UIViewController {
                         print(error!.localizedDescription)
                         return
                     }
+                    
                     let pic = url?.absoluteString
     
-                    let userdata = [
-                        "profilePicURL": pic as Any, ]
+                    let userdata = ["profilePicURL": pic as Any,]
                     Database.database().reference().child("users").child((userID)!).updateChildValues(userdata) { (error, ref) in
                     
-                       print("DEBUG: Data saved...")
+                        let ac = UIAlertController(title: "Profile Pic", message: "Successfully updated", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(ac, animated: true)
                     }
                     
                 })
             }
             )}
+    }
+    
+    @objc func updateOthers() {
+    
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        guard let name = fullNameTextField.text else { return }
+        guard let index = indexTextField.text else { return }
+        guard let country = countryDropDown.text else { return }
+        
+        let values = [
+            "fullName": name,
+            "indexOrEmployeeCode": index,
+            "country": country
+            ] as [String : Any]
+        
+        Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
+            
+            let ac = UIAlertController(title: "Fields update", message: "Successfully updated", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+            
+        }
     }
     
     @objc func handleSelectProfileImageView(){
