@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController {
         button.backgroundColor = UIColor.black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
-      //  button.addTarget(self, action: #selector(update), for: UIControl.Event.touchUpInside)
+        button.addTarget(self, action: #selector(updateAll), for: UIControl.Event.touchUpInside)
         
         return button
         
@@ -172,6 +172,41 @@ class ProfileViewController: UIViewController {
         present(set, animated: true, completion: {
             // Back
         })
+    }
+    
+    @objc func updateAll() {
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+        let storageRef = Storage.storage().reference(forURL:"gs://nibm-covid19.appspot.com/profilePics").child(userID!).child("\(NSUUID().uuidString).jpg")
+        if let profileImg = self.selectedImage, let imageData = profileImg.jpegData(compressionQuality: 0.1){
+            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error ) in
+                
+                if error != nil{
+                    print("Error in uploading profile photo.")
+                }
+
+                storageRef.downloadURL(completion: {(url, error) in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    else if url == nil{
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    let pic = url?.absoluteString
+                    
+                    
+                    let userdata = ["profilePicURL": pic as Any, ]
+                    Database.database().reference().child("users").child((userID)!).updateChildValues(userdata) { (error, ref) in
+                    
+                       print("DEBUG: Data saved...")
+                    }
+                    
+                })
+            }
+            )}
     }
     
     @objc func handleSelectProfileImageView(){
