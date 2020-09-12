@@ -106,6 +106,26 @@ class ProfileViewController: UIViewController {
          return label
      }()
     
+    private lazy var fullNameContainerView: UIView = {
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "FullName"), textField: fullNameTextField )
+        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        return view
+    }()
+    
+    private lazy var indexContainerView: UIView = {
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "IndexNo"), textField: indexTextField )
+        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        return view
+    }()
+    
+    private let fullNameTextField: UITextField = {
+        return UITextField().textField(withPlaceholder: "Full Name", isSecureTextEntry: false)
+    }()
+    
+    private let indexTextField: UITextField = {
+        return UITextField().textField(withPlaceholder: "IndexNo or EmployeeCode", isSecureTextEntry: false)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -139,6 +159,15 @@ class ProfileViewController: UIViewController {
         view.addSubview(tempLabel)
         tempLabel.anchor(top: addressLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 90, paddingRight: 90)
         
+        let stack = UIStackView(arrangedSubviews: [fullNameContainerView,indexContainerView])
+        stack.axis = .vertical
+        stack.distribution = .fillProportionally
+        stack.spacing = 24
+        
+        view.addSubview(stack)
+        stack.anchor(top: tempLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+        
+
         view.addSubview(updateButton)
         updateButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 0, paddingRight: 0)
         
@@ -150,9 +179,13 @@ class ProfileViewController: UIViewController {
             let address = value?["address"] as? String ?? ""
             let temparature = value?["bodyTemperature"] as? String ?? ""
             let profilePic = value?["profilePicURL"] as? String ?? ""
+            let index = value?["indexOrEmployeeCode"] as? String ?? ""
+            
             self.nameLabel.text = name
             self.addressLabel.text = "at \(address)"
             self.tempLabel.text = temparature+"'C"
+            self.fullNameTextField.text = name
+            self.indexTextField.text = index
             
           
             let imageUrl = URL(string: profilePic)

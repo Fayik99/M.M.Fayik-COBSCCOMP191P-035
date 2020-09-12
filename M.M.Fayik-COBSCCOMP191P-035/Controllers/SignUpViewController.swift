@@ -38,6 +38,12 @@ class SignUpViewController: UIViewController {
         return view
     }()
     
+    private lazy var indexContainerView: UIView = {
+        let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_person_outline_white_2x"), textField: indexTextField )
+        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        return view
+    }()
+    
     private lazy var addressContainerView: UIView = {
           let view = UIView().inputContainerView(image: #imageLiteral(resourceName: "ic_person_outline_white_2x"), textField: addressTextField )
           view.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -62,6 +68,10 @@ class SignUpViewController: UIViewController {
     
     private let fullNameTextField: UITextField = {
         return UITextField().textField(withPlaceholder: "Full Name", isSecureTextEntry: false)
+    }()
+    
+    private let indexTextField: UITextField = {
+        return UITextField().textField(withPlaceholder: "IndexNo / EmployeeCode", isSecureTextEntry: false)
     }()
     
     private let addressTextField: UITextField = {
@@ -114,17 +124,17 @@ class SignUpViewController: UIViewController {
             
             //handle error
             
-            let keyWindow = UIApplication.shared.connectedScenes
-                .filter({$0.activationState == .foregroundActive})
-                .map({$0 as? UIWindowScene})
-                .compactMap({$0})
-                .first?.windows
-                .filter({$0.isKeyWindow}).first
+//            let keyWindow = UIApplication.shared.connectedScenes
+//                .filter({$0.activationState == .foregroundActive})
+//                .map({$0 as? UIWindowScene})
+//                .compactMap({$0})
+//                .first?.windows
+//                .filter({$0.isKeyWindow}).first
             
-            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
-            controller.configure()
-            
-            self.dismiss(animated: true, completion: nil)
+//            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
+//            controller.configure()
+                      print("Success: SignUp Successful")
+                      self.dismiss(animated: true, completion: nil)
         }
     }
     // MARK: - Functions
@@ -135,7 +145,7 @@ class SignUpViewController: UIViewController {
         apptitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor)
         apptitleLabel.centerX(inView: view)
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, fullNameContainerView,addressContainerView, passwordContainerView, accountTypeContainerView,signUpButton])
+        let stack = UIStackView(arrangedSubviews: [emailContainerView, fullNameContainerView, indexContainerView , addressContainerView, passwordContainerView, accountTypeContainerView,signUpButton])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.spacing = 24
@@ -153,6 +163,7 @@ class SignUpViewController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let fullName = fullNameTextField.text else { return }
+        guard let indexNo = indexTextField.text else { return }
         guard let address = addressTextField.text else { return }
         let accountType = accountTypeSegmentedControl.selectedSegmentIndex
         
@@ -168,6 +179,7 @@ class SignUpViewController: UIViewController {
                 "email": email,
                 "fullName": fullName,
                 "address": address,
+                "indexOrEmployeeCode": indexNo,
                 "accountType": accountType
                 ] as [String : Any]
             

@@ -169,7 +169,7 @@ class UpdateViewController: UIViewController {
             self.present(ac, animated: true)
         }
         else {
-           // Database.database().reference().child("user temperature").child(userID).updateChildValues(values) { (error, ref) in
+            // Database.database().reference().child("user temperature").child(userID).updateChildValues(values) { (error, ref) in
             Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
                 
                 print("DEBUG: Data saved...")
@@ -177,6 +177,6 @@ class UpdateViewController: UIViewController {
                 self.tempUpdate.text = ""
             }
         }
-        }
     }
+}
 
