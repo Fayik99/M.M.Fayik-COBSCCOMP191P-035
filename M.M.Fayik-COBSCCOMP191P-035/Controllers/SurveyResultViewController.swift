@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class SurveyResultViewController: UIViewController {
     var score: Int?
@@ -26,31 +28,43 @@ class SurveyResultViewController: UIViewController {
         guard let sc = score, let tc = totalScore else { return }
         let s = sc * 100 / tc
         if s < 10 {
-            rating = "Poor"
+            rating = "You are not infected"
             color = UIColor.darkGray
         }  else if s < 40 {
-            rating = "Average"
+            rating = "You are not infected"
             color = UIColor.blue
         } else if s < 60 {
-            rating = "Good"
+            rating = "You are not infected"
             color = UIColor.yellow
         } else if s < 80 {
-            rating = "Excellent"
+            rating = "You are infected"
             color = UIColor.red
         } else if s <= 100 {
-            rating = "Outstanding"
-            color = UIColor.orange
+            rating = "You are infected"
+            color = UIColor.red
         }
         lblRating.text = "\(rating)"
         lblRating.textColor=color
     }
     
     @objc func btnSubmitAction() {
-        let submit = UpdateViewController()
-        submit.modalPresentationStyle = .fullScreen
-        present(submit, animated: true, completion: {
-        })
-        // self.navigationController?.popToRootViewController(animated: true)
+        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        guard let sValue = score else { return }
+        
+        let values = [
+            "surveyWeight": sValue,
+            ] as [String : Any]
+        
+        Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
+            
+            print("DEBUG: Data saved...")
+        }
+            let submit = UpdateViewController()
+            submit.modalPresentationStyle = .fullScreen
+            present(submit, animated: true, completion: {
+            })
+            // self.navigationController?.popToRootViewController(animated: true)
     }
     
     func setupViews() {
@@ -70,7 +84,7 @@ class SurveyResultViewController: UIViewController {
         self.view.addSubview(lblRating)
         lblRating.topAnchor.constraint(equalTo: lblScore.bottomAnchor, constant: 40).isActive=true
         lblRating.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive=true
-        lblRating.widthAnchor.constraint(equalToConstant: 150).isActive=true
+        lblRating.widthAnchor.constraint(equalToConstant: 220).isActive=true
         lblRating.heightAnchor.constraint(equalToConstant: 60).isActive=true
         showRating()
         
@@ -105,7 +119,7 @@ class SurveyResultViewController: UIViewController {
     
     let lblRating: UILabel = {
         let lbl=UILabel()
-        lbl.text="Good"
+        lbl.text=""
         lbl.textColor=UIColor.black
         lbl.textAlignment = .center
         lbl.font = UIFont.boldSystemFont(ofSize: 24)
