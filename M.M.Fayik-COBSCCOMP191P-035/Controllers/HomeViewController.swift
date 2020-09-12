@@ -165,7 +165,7 @@ class HomeViewController: UIViewController {
     func configure() {
         configureUi()
       //fetchUserData()
-       fetchUsers()
+        fetchUsers()
     
     }
     
@@ -373,17 +373,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 2 : searchResults.count
+        return section == 1 ? 2 : searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! LocationTableViewCell
         
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
             cell.placemark = searchResults[indexPath.row]
         }
         

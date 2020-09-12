@@ -11,14 +11,17 @@ import Firebase
 import FirebaseAuth
 import FirebaseCore
 import FirebaseDatabase
+import FirebaseStorage
 
 class ProfileViewController: UIViewController {
 
+    var selectedImage: UIImage?
+    
     private let titleLabel: UILabel = {
         
         let label = UILabel()
         label.text = "User Profile"
-        label.font = UIFont(name: "Avenir-Light", size: 25)
+        label.font = UIFont(name: "Avenir-Light", size: 30)
         label.textColor = UIColor.black
         
         return label
@@ -28,9 +31,10 @@ class ProfileViewController: UIViewController {
         
         let label = UILabel()
         label.text = "User Name"
-        label.font = UIFont(name: "Avenir-Light", size: 20)
+        label.font = UIFont(name: "Avenir-Light", size: 24)
         label.textColor = UIColor.black
         label.textAlignment = .center
+        
         
         return label
     }()
@@ -57,11 +61,57 @@ class ProfileViewController: UIViewController {
         
     }()
     
+    private lazy var profileImageView: UIImageView = {
+        
+        let pImage = UIImageView()
+        pImage.image = #imageLiteral(resourceName: "icons8-image-100").withRenderingMode(.alwaysOriginal)
+        pImage.contentMode = .scaleAspectFill
+        pImage.layer.cornerRadius = 10
+        pImage.clipsToBounds = true
+        
+        return pImage
+        
+    }()
+    
+    private let ActiveLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Active user since August 2020"
+        label.font = UIFont(name: "Avenir-Light", size: 15)
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    private let addressLabel: UILabel = {
+         
+         let label = UILabel()
+         label.text = ""
+         label.font = UIFont(name: "Avenir-Light", size: 15)
+         label.textColor = UIColor.black
+         label.textAlignment = .center
+         
+         return label
+     }()
+    
+    private let tempLabel: UILabel = {
+         
+         let label = UILabel()
+         label.text = ""
+         label.font = UIFont(name: "Avenir-Light", size: 22)
+         label.textColor = UIColor.black
+         label.textAlignment = .center
+         
+         return label
+     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.white
         LoadUI()
+        uploadProfilePic()
     }
     
     func LoadUI() {
@@ -77,6 +127,17 @@ class ProfileViewController: UIViewController {
         view.addSubview(nameLabel)
         nameLabel.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40)
         
+        view.addSubview(profileImageView)
+        profileImageView.anchor(top: nameLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 35, paddingLeft: 150, paddingRight: 150, width: 90, height: 90)
+        
+        view.addSubview(ActiveLabel)
+        ActiveLabel.anchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 90, paddingRight: 90)
+        
+        view.addSubview(addressLabel)
+        addressLabel.anchor(top: ActiveLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 90, paddingRight: 90)
+        
+        view.addSubview(tempLabel)
+        tempLabel.anchor(top: addressLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 90, paddingRight: 90)
         
         view.addSubview(updateButton)
         updateButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 0, paddingRight: 0)
@@ -86,12 +147,23 @@ class ProfileViewController: UIViewController {
             // Get user name value
             let value = snapshot.value as? NSDictionary
             let name = value?["fullName"] as? String ?? ""
+            let address = value?["address"] as? String ?? ""
+            let temparature = value?["bodyTemperature"] as? String ?? ""
             self.nameLabel.text = name
+            self.addressLabel.text = "at \(address)"
+            self.tempLabel.text = temparature+"'C"
             
             // ...
         }) { (error) in
             print("Name not found")
         }
+    }
+    
+    func uploadProfilePic() {
+    
+        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.handleSelectProfileImageView))
+        profileImageView.addGestureRecognizer(tapGuesture)
+        profileImageView.isUserInteractionEnabled = true
     }
     
     @objc func showSettingsController() {
@@ -100,5 +172,25 @@ class ProfileViewController: UIViewController {
         present(set, animated: true, completion: {
             // Back
         })
+    }
+    
+    @objc func handleSelectProfileImageView(){
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        present(pickerController, animated: true, completion: nil)
+    }
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[.originalImage] as? UIImage {
+            selectedImage = image
+            profileImageView.image = image
+        }
+        print(info)
+        
+        dismiss(animated: true, completion: nil)
     }
 }
