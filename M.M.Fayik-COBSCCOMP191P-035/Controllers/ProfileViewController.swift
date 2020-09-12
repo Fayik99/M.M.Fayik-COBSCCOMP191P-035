@@ -149,9 +149,17 @@ class ProfileViewController: UIViewController {
             let name = value?["fullName"] as? String ?? ""
             let address = value?["address"] as? String ?? ""
             let temparature = value?["bodyTemperature"] as? String ?? ""
+            let profilePic = value?["profilePicURL"] as? String ?? ""
             self.nameLabel.text = name
             self.addressLabel.text = "at \(address)"
             self.tempLabel.text = temparature+"'C"
+          
+            let imageUrl = URL(string: profilePic)
+            let imageData = try! Data(contentsOf: imageUrl!)
+            let image = UIImage(data: imageData)
+            
+            self.profileImageView.image = image!
+            
             
             // ...
         }) { (error) in
@@ -179,6 +187,7 @@ class ProfileViewController: UIViewController {
         let userID = Auth.auth().currentUser?.uid
         
         let storageRef = Storage.storage().reference(forURL:"gs://nibm-covid19.appspot.com/profilePics").child(userID!).child("\(NSUUID().uuidString).jpg")
+        
         if let profileImg = self.selectedImage, let imageData = profileImg.jpegData(compressionQuality: 0.1){
             storageRef.putData(imageData, metadata: nil, completion: { (metadata, error ) in
                 
@@ -196,9 +205,9 @@ class ProfileViewController: UIViewController {
                         return
                     }
                     let pic = url?.absoluteString
-                    
-                    
-                    let userdata = ["profilePicURL": pic as Any, ]
+    
+                    let userdata = [
+                        "profilePicURL": pic as Any, ]
                     Database.database().reference().child("users").child((userID)!).updateChildValues(userdata) { (error, ref) in
                     
                        print("DEBUG: Data saved...")
