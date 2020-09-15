@@ -46,11 +46,11 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
         
         self.view.addSubview(myCollectionView)
         
-        let que1 = safeAction(imgName: "handwash", headerText: "Wash your hands", description: "Please wash your hands before leaving and when entering the home")
-        let que2 = safeAction(imgName: "nocrowd", headerText: "Avoid crowd", description: "Please avoid crowdwd places")
-        let que3 = safeAction(imgName: "patient", headerText: "Wear facemask", description: "Wearing facemask will save yourself aswell as others from spreading diseases")
-        let que4 = safeAction(imgName: "handsanitizer", headerText: "Use hand sanitizer", description: "Sanitize your hand frequently")
-        let que5 = safeAction(imgName: "socialdistancing", headerText: "Maintain socialdistancing ?", description: "Maintain atleast 1 meter gap inbetween yourself and others when going out")
+        let que1 = safeAction(imgName: "handwashing", headerText: "Wash your hands", description: "Please wash your hands before leaving and when entering the home")
+        let que2 = safeAction(imgName: "avoidcrowd", headerText: "Avoid crowd", description: "Please avoid crowdwd places")
+        let que3 = safeAction(imgName: "mask", headerText: "Wear facemask", description: "Wearing facemask will save yourself aswell as others from spreading diseases")
+        let que4 = safeAction(imgName: "sanitizer", headerText: "Use hand sanitizer", description: "Sanitize your hand frequently")
+        let que5 = safeAction(imgName: "socialdis", headerText: "Maintain socialdistancing ?", description: "Maintain atleast 1 meter gap inbetween yourself and others when going out")
       
         questionsArray = [que1, que2, que3,que4,que5]
         
@@ -82,7 +82,7 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
 //        }
 //    }
     @objc func navToHome(){
-        let vc = HomeDashBoardViewController()
+        let vc = TabBarViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: {
         })
@@ -127,22 +127,17 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
         
         myCollectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
         
-        self.view.addSubview(btnPrev)
-//        btnPrev.heightAnchor.constraint(equalToConstant: 50).isActive=true
-      
-//        btnPrev.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive=true
-//        btnPrev.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
-        
-        btnPrev.anchor( left: view.leftAnchor, bottom: view.bottomAnchor, paddingBottom: 10, height: 50)
-         btnPrev.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive=true
-        
-        self.view.addSubview(btnNext)
-//        btnNext.heightAnchor.constraint(equalTo: btnPrev.heightAnchor).isActive=true
-      
-//        btnNext.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
-//        btnNext.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
-        btnNext.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 10,  height: 50)
-         btnNext.widthAnchor.constraint(equalTo: btnPrev.widthAnchor).isActive=true
+           self.view.addSubview(btnPrev)
+            btnPrev.heightAnchor.constraint(equalToConstant: 50).isActive=true
+            btnPrev.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive=true
+            btnPrev.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive=true
+            btnPrev.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
+            
+            self.view.addSubview(btnNext)
+            btnNext.heightAnchor.constraint(equalTo: btnPrev.heightAnchor).isActive=true
+            btnNext.widthAnchor.constraint(equalTo: btnPrev.widthAnchor).isActive=true
+            btnNext.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
+            btnNext.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
         
 //        self.view.addSubview(lblQueNumber)
 //        lblQueNumber.heightAnchor.constraint(equalToConstant: 20).isActive=true
@@ -150,8 +145,6 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
 //        lblQueNumber.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive=true
 //        lblQueNumber.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive=true
 //        lblQueNumber.text = "Question: \(1) / \(questionsArray.count)"
-        
-
     }
     
     let btnPrev: UIButton = {
