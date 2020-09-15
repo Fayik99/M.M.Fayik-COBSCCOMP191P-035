@@ -20,7 +20,7 @@ class TabBarViewController: UITabBarController {
     }
     func tab() {
         
-        let homeViewController = HomeViewController()
+        let homeViewController = HomeDashBoardViewController()
         homeViewController.tabBarItem.image = #imageLiteral(resourceName: "Home2x")
         homeViewController.tabBarItem.title = "HOME"
         

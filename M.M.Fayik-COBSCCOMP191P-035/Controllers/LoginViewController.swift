@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     
     private lazy var logoImage: UIImageView = {
         
-       let imageView = UIImageView(image: #imageLiteral(resourceName: "NIBM-GOLD"))
+       let imageView = UIImageView(image: #imageLiteral(resourceName: "nibmcl"))
        return imageView
         
     }()
@@ -99,7 +99,7 @@ class LoginViewController: UIViewController {
         apptitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
         view.addSubview(logoImage)
-        logoImage.anchor(top: apptitleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 25, paddingRight: 25, width: 35, height: 140)
+        logoImage.anchor(top: apptitleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 110, paddingRight: 110, height: 140)
         
         let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
         stack.axis = .vertical

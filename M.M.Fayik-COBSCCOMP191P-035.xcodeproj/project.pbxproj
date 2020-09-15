@@ -10,6 +10,9 @@
 		07FEFA07E8CD2AB89F81C60E /* Pods_M_M_Fayik_COBSCCOMP191P_035.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D2BBC71C74853FAF425CBA /* Pods_M_M_Fayik_COBSCCOMP191P_035.framework */; };
 		11060A38250AAE0C00F45F9E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A37250AAE0C00F45F9E /* ProfileViewController.swift */; };
 		11060A3A250AAE7F00F45F9E /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A39250AAE7F00F45F9E /* ContactUsViewController.swift */; };
+		11060A3C250E67C700F45F9E /* HomeDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A3B250E67C700F45F9E /* HomeDashBoardViewController.swift */; };
+		11060A3E251146D300F45F9E /* SafeActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A3D251146D300F45F9E /* SafeActionsViewController.swift */; };
+		11060A4625114BEA00F45F9E /* SafeActionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A4525114BEA00F45F9E /* SafeActionsCollectionViewCell.swift */; };
 		115A596F24F1701200AB2946 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A596E24F1701200AB2946 /* UpdateViewController.swift */; };
 		115A597124F1710D00AB2946 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A597024F1710D00AB2946 /* SettingsViewController.swift */; };
 		117C2AB724F62401008549AB /* LocationinputActivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AB624F62401008549AB /* LocationinputActivation.swift */; };
@@ -60,6 +63,9 @@
 		01DAB0F552027A222016922A /* Pods-M.M.Fayik-COBSCCOMP191P-035Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M.M.Fayik-COBSCCOMP191P-035Tests.release.xcconfig"; path = "Target Support Files/Pods-M.M.Fayik-COBSCCOMP191P-035Tests/Pods-M.M.Fayik-COBSCCOMP191P-035Tests.release.xcconfig"; sourceTree = "<group>"; };
 		11060A37250AAE0C00F45F9E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11060A39250AAE7F00F45F9E /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		11060A3B250E67C700F45F9E /* HomeDashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashBoardViewController.swift; sourceTree = "<group>"; };
+		11060A3D251146D300F45F9E /* SafeActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionsViewController.swift; sourceTree = "<group>"; };
+		11060A4525114BEA00F45F9E /* SafeActionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		115A596E24F1701200AB2946 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		115A597024F1710D00AB2946 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		117C2AB624F62401008549AB /* LocationinputActivation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationinputActivation.swift; sourceTree = "<group>"; };
@@ -238,6 +244,9 @@
 				117C2ADA24FE6B04008549AB /* SurveyResultViewController.swift */,
 				11060A37250AAE0C00F45F9E /* ProfileViewController.swift */,
 				11060A39250AAE7F00F45F9E /* ContactUsViewController.swift */,
+				11060A3B250E67C700F45F9E /* HomeDashBoardViewController.swift */,
+				11060A3D251146D300F45F9E /* SafeActionsViewController.swift */,
+				11060A4525114BEA00F45F9E /* SafeActionsCollectionViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -505,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11DBB6DF24F10BA1005546AC /* HomeViewController.swift in Sources */,
+				11060A3E251146D300F45F9E /* SafeActionsViewController.swift in Sources */,
 				1187127A24F2EEA900537EB3 /* Extensions.swift in Sources */,
 				1187127E24F3EB5000537EB3 /* TabBarViewController.swift in Sources */,
 				117C2AB724F62401008549AB /* LocationinputActivation.swift in Sources */,
@@ -515,12 +525,14 @@
 				117C2AB924F62739008549AB /* LocationInputView.swift in Sources */,
 				1187127424F2E07A00537EB3 /* LoginViewController.swift in Sources */,
 				117C2AD924FE6AAA008549AB /* SurveyCollectionViewCell.swift in Sources */,
+				11060A3C250E67C700F45F9E /* HomeDashBoardViewController.swift in Sources */,
 				117C2ACF24FD6359008549AB /* AuthUIButton.swift in Sources */,
 				117C2ABB24F62B5A008549AB /* LocationHandling.swift in Sources */,
 				115A596F24F1701200AB2946 /* UpdateViewController.swift in Sources */,
 				117C2ADB24FE6B04008549AB /* SurveyResultViewController.swift in Sources */,
 				1187127624F2E0B000537EB3 /* SignUpViewController.swift in Sources */,
 				117C2AC124F6C4FB008549AB /* Services.swift in Sources */,
+				11060A4625114BEA00F45F9E /* SafeActionsCollectionViewCell.swift in Sources */,
 				117C2ACD24FA6D10008549AB /* LocationTableViewCell.swift in Sources */,
 				11060A38250AAE0C00F45F9E /* ProfileViewController.swift in Sources */,
 				117C2AD724FE69CF008549AB /* CvSurveyViewController.swift in Sources */,

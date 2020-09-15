@@ -65,6 +65,7 @@ class HomeViewController: UIViewController {
         //checkIsUserLoggedIn()
         //signOut()
         configure()
+        fetchUsers()
         configureLocationInputActivationView()
         AccessLocationServices()
         
@@ -195,6 +196,7 @@ class HomeViewController: UIViewController {
     }
     
     func confugireMapView() {
+        
         view.addSubview(mapView)
         mapView.frame = view.frame
         
@@ -299,7 +301,7 @@ extension HomeViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? UserAnnotation {
             let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            view.image = #imageLiteral(resourceName: "icons8-user-100")
+            view.image = #imageLiteral(resourceName: "IndexNo")
             return view
         }
         
@@ -410,27 +412,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

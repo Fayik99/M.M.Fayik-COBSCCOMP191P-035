@@ -51,17 +51,16 @@ class ProfileViewController: UIViewController{
         return button
     }()
 
-    private let updateButton: AuthUIButton = {
+    private let updateButton: UIButton = {
         
-        let button = AuthUIButton(type: .system)
+        let button = UIButton()
+        button.backgroundColor = .white
         button.setTitle("U P D A T E", for: .normal)
-        button.backgroundColor = UIColor.black
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-        button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
-        button.addTarget(self, action: #selector(updateOthers), for: UIControl.Event.touchUpInside)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 20)
+        button.addTarget(self, action: #selector(updateOthers), for: .touchUpInside)
         
         return button
-        
     }()
     
     private lazy var profileImageView: UIImageView = {
@@ -115,6 +114,7 @@ class ProfileViewController: UIViewController{
         button.setTitle("Update Pic", for: .normal)
         button.backgroundColor = .black
         button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
+        button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         button.addTarget(self, action: #selector(updateAll), for: UIControl.Event.touchUpInside)
         
@@ -164,10 +164,22 @@ class ProfileViewController: UIViewController{
         return con
     }()
     
+    private let blankView: UIView = {
+        let blank = UIView()
+        blank.backgroundColor = .systemGray6
+        
+        let separatorView = UIView()
+        separatorView.backgroundColor = .lightGray
+        blank.addSubview(separatorView)
+        separatorView.anchor(left: blank.leftAnchor, bottom: blank.bottomAnchor, right: blank.rightAnchor, paddingLeft: 8, paddingRight: 8, height: 0.75)
+        
+        return blank
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.systemGray6
         LoadUI()
         uploadProfilePic()
     }
@@ -186,10 +198,13 @@ class ProfileViewController: UIViewController{
         nameLabel.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40)
         
         view.addSubview(profileImageView)
-        profileImageView.anchor(top: nameLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 35, paddingLeft: 150, paddingRight: 150, height: 90)
+        profileImageView.anchor(top: nameLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 25, paddingLeft: 150, paddingRight: 150, height: 90)
+        
+        view.addSubview(updatePic)
+        updatePic.anchor(top: profileImageView.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 170, paddingRight: 170)
         
         view.addSubview(ActiveLabel)
-        ActiveLabel.anchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 90, paddingRight: 90)
+        ActiveLabel.anchor(top: updatePic.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 90, paddingRight: 90)
         
         view.addSubview(addressLabel)
         addressLabel.anchor(top: ActiveLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 90, paddingRight: 90)
@@ -197,20 +212,19 @@ class ProfileViewController: UIViewController{
         view.addSubview(tempLabel)
         tempLabel.anchor(top: addressLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 90, paddingRight: 90)
         
-        view.addSubview(updatePic)
-        updatePic.anchor(top: tempLabel.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 170, paddingRight: 170)
-        
         let stack = UIStackView(arrangedSubviews: [fullNameTextField,indexTextField,countryDropDown])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.spacing = 24
         
         view.addSubview(stack)
-        stack.anchor(top: updatePic.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
-        
-
+        stack.anchor(top: tempLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
+    
         view.addSubview(updateButton)
         updateButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 0, paddingRight: 0)
+        
+        view.addSubview(blankView)
+        blankView.anchor(top: stack.bottomAnchor, left: view.leftAnchor, bottom: updateButton.topAnchor, right: view.rightAnchor)
         
 //        pickerView.delegate = self
 //        pickerView.dataSource = self
@@ -261,25 +275,7 @@ class ProfileViewController: UIViewController{
         profileImageView.addGestureRecognizer(tapGuesture)
         profileImageView.isUserInteractionEnabled = true
     }
-    
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//
-//
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return countries.count
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return countries[row]
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        countryDropDown.text = countries[row]
-//        countryDropDown.resignFirstResponder()
-//    }
-//
+
     @objc func showSettingsController() {
         let set = SettingsViewController()
         set.modalPresentationStyle = .fullScreen
