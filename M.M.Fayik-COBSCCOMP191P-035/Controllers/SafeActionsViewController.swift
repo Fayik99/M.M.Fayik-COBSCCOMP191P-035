@@ -120,31 +120,31 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
     }
     
     func setupViews() {
-//        myCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive=true
-//        myCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive=true
-//        myCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
-//        myCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive=true
+        //        myCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive=true
+        //        myCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive=true
+        //        myCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
+        //        myCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive=true
         
         myCollectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
         
-           self.view.addSubview(btnPrev)
-            btnPrev.heightAnchor.constraint(equalToConstant: 50).isActive=true
-            btnPrev.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive=true
-            btnPrev.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive=true
-            btnPrev.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
-            
-            self.view.addSubview(btnNext)
-            btnNext.heightAnchor.constraint(equalTo: btnPrev.heightAnchor).isActive=true
-            btnNext.widthAnchor.constraint(equalTo: btnPrev.widthAnchor).isActive=true
-            btnNext.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
-            btnNext.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
+        self.view.addSubview(btnPrev)
+        btnPrev.heightAnchor.constraint(equalToConstant: 50).isActive=true
+        btnPrev.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive=true
+        btnPrev.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive=true
+        btnPrev.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
         
-//        self.view.addSubview(lblQueNumber)
-//        lblQueNumber.heightAnchor.constraint(equalToConstant: 20).isActive=true
-//        lblQueNumber.widthAnchor.constraint(equalToConstant: 150).isActive=true
-//        lblQueNumber.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive=true
-//        lblQueNumber.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive=true
-//        lblQueNumber.text = "Question: \(1) / \(questionsArray.count)"
+        self.view.addSubview(btnNext)
+        btnNext.heightAnchor.constraint(equalTo: btnPrev.heightAnchor).isActive=true
+        btnNext.widthAnchor.constraint(equalTo: btnPrev.widthAnchor).isActive=true
+        btnNext.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
+        btnNext.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
+        
+        //        self.view.addSubview(lblQueNumber)
+        //        lblQueNumber.heightAnchor.constraint(equalToConstant: 20).isActive=true
+        //        lblQueNumber.widthAnchor.constraint(equalToConstant: 150).isActive=true
+        //        lblQueNumber.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive=true
+        //        lblQueNumber.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -80).isActive=true
+        //        lblQueNumber.text = "Question: \(1) / \(questionsArray.count)"
     }
     
     let btnPrev: UIButton = {

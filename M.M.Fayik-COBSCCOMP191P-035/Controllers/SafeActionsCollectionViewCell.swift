@@ -136,7 +136,7 @@ class SafeActionsCollectionViewCell: UICollectionViewCell {
         lbl.text="This is a question and you have to answer it?"
         lbl.textColor=UIColor.black
         lbl.textAlignment = .center
-        lbl.font = UIFont.systemFont(ofSize: 16)
+        lbl.font = UIFont.systemFont(ofSize: 26)
         lbl.numberOfLines=4
         lbl.translatesAutoresizingMaskIntoConstraints=false
         return lbl
@@ -147,7 +147,7 @@ class SafeActionsCollectionViewCell: UICollectionViewCell {
         lbl.text="This is a question and you have to answer it?"
         lbl.textColor=UIColor.black
         lbl.textAlignment = .center
-        lbl.font = UIFont.systemFont(ofSize: 12)
+        lbl.font = UIFont.systemFont(ofSize: 20)
         lbl.numberOfLines=4
         lbl.translatesAutoresizingMaskIntoConstraints=false
         return lbl

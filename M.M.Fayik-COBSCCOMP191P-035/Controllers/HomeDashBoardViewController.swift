@@ -236,9 +236,9 @@ class HomeDashBoardViewController: UIViewController{
         MapView.translatesAutoresizingMaskIntoConstraints=false
         view.addSubview(MapView)
         
-        confugireMapView()
-        fetchUsers()
-        AccessLocationServices()
+        //confugireMapView()
+        //fetchUsers()
+        //AccessLocationServices()
         
         stayHomeImageContainerView.backgroundColor = .white
         stayHomeTextContainerView.backgroundColor = .white
@@ -398,17 +398,17 @@ class HomeDashBoardViewController: UIViewController{
         recoveredLabel.centerXAnchor.constraint(equalTo: recoveredStackView.centerXAnchor).isActive = true
         
         //Map
-        MapView.topAnchor.constraint(equalTo: coundDownControlStackView.bottomAnchor, constant: 15).isActive = true
-        MapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -240).isActive = true
-        MapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
-        MapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        MapView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.31).isActive = true
-        
-        mapView.topAnchor.constraint(equalTo: MapView.topAnchor, constant: 15).isActive = true
-        mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        mapView.bottomAnchor.constraint(equalTo: MapView.safeAreaLayoutGuide.bottomAnchor, constant: -240).isActive = true
-        
+//        MapView.topAnchor.constraint(equalTo: coundDownControlStackView.bottomAnchor, constant: 15).isActive = true
+//        MapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -240).isActive = true
+//        MapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+//        MapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+//        MapView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.31).isActive = true
+//
+//        mapView.topAnchor.constraint(equalTo: MapView.topAnchor, constant: 15).isActive = true
+//        mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+//        mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+//        mapView.bottomAnchor.constraint(equalTo: MapView.safeAreaLayoutGuide.bottomAnchor, constant: -240).isActive = true
+//
     }
     
     @objc func safeActions() {
@@ -427,97 +427,97 @@ class HomeDashBoardViewController: UIViewController{
             // map
         })
     }
-
-    func fetchUsers() {
-        guard let location = locationManager?.location else { return }
-        Services.shared.fetchUsersLocation(location: location) { (user) in
-            guard let coordinate = user.location?.coordinate else { return }
-            let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
-
-            var userIsVisible: Bool {
-
-                return self.mapView.annotations.contains { (annotation) -> Bool in
-                    guard let userAnno = annotation as? UserAnnotation else { return false }
-
-                    if userAnno.uid == user.uid {
-                        userAnno.updateAnnotationPosition(withCoordinate: coordinate)
-                        return true
-                    }
-
-                    return false
-                }
-            }
-
-            if !userIsVisible {
-                self.mapView.addAnnotation(annotation)
-            }
-        }
-    }
-
-    func confugireMapView() {
-        
-        mapView.frame = view.frame
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
-        mapView.delegate = self
-    }
-    
-    
-    
-    func removeAnnotationsAndOverlays() {
-        mapView.annotations.forEach { (annotation) in
-            if let anno = annotation as? MKPointAnnotation {
-                mapView.removeAnnotation(anno)
-            }
-        }
-        
-        if mapView.overlays.count > 0 {
-            mapView.removeOverlay(mapView.overlays[0])
-        }
-    }
 }
-// MARK: - MKMapViewDelegate
-extension HomeDashBoardViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? UserAnnotation {
-            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            view.image = #imageLiteral(resourceName: "IndexNo")
-            return view
-        }
-
-        return nil
-    }
-
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let route = self.route {
-            let polyline = route.polyline
-            let lineRenderer = MKPolylineRenderer(overlay: polyline)
-            lineRenderer.strokeColor = .mainBlueTint
-            lineRenderer.lineWidth = 4
-            return lineRenderer
-        }
-        return MKOverlayRenderer()
-    }
-}
-// MARK: - LocationServices
-extension HomeDashBoardViewController {
-
-    func  AccessLocationServices() {
-
-        switch CLLocationManager.authorizationStatus() {
-        case .notDetermined:
-            locationManager?.requestWhenInUseAuthorization()
-        case .restricted, .denied:
-            break
-        case .authorizedWhenInUse:
-            locationManager?.requestAlwaysAuthorization()
-        case .authorizedAlways:
-            locationManager?.startUpdatingLocation()
-            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        default:
-            break
-        }
-    }
-}
+//    func fetchUsers() {
+//        guard let location = locationManager?.location else { return }
+//        Services.shared.fetchUsersLocation(location: location) { (user) in
+//            guard let coordinate = user.location?.coordinate else { return }
+//            let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
+//
+//            var userIsVisible: Bool {
+//
+//                return self.mapView.annotations.contains { (annotation) -> Bool in
+//                    guard let userAnno = annotation as? UserAnnotation else { return false }
+//
+//                    if userAnno.uid == user.uid {
+//                        userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+//                        return true
+//                    }
+//
+//                    return false
+//                }
+//            }
+//
+//            if !userIsVisible {
+//                self.mapView.addAnnotation(annotation)
+//            }
+//        }
+//    }
+//
+//    func confugireMapView() {
+//
+//        mapView.frame = view.frame
+//        mapView.showsUserLocation = true
+//        mapView.userTrackingMode = .follow
+//        mapView.delegate = self
+//    }
+//
+//
+//
+//    func removeAnnotationsAndOverlays() {
+//        mapView.annotations.forEach { (annotation) in
+//            if let anno = annotation as? MKPointAnnotation {
+//                mapView.removeAnnotation(anno)
+//            }
+//        }
+//
+//        if mapView.overlays.count > 0 {
+//            mapView.removeOverlay(mapView.overlays[0])
+//        }
+//    }
+//}
+//// MARK: - MKMapViewDelegate
+//extension HomeDashBoardViewController: MKMapViewDelegate {
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        if let annotation = annotation as? UserAnnotation {
+//            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+//            view.image = #imageLiteral(resourceName: "IndexNo")
+//            return view
+//        }
+//
+//        return nil
+//    }
+//
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        if let route = self.route {
+//            let polyline = route.polyline
+//            let lineRenderer = MKPolylineRenderer(overlay: polyline)
+//            lineRenderer.strokeColor = .mainBlueTint
+//            lineRenderer.lineWidth = 4
+//            return lineRenderer
+//        }
+//        return MKOverlayRenderer()
+//    }
+//}
+//// MARK: - LocationServices
+//extension HomeDashBoardViewController {
+//
+//    func  AccessLocationServices() {
+//
+//        switch CLLocationManager.authorizationStatus() {
+//        case .notDetermined:
+//            locationManager?.requestWhenInUseAuthorization()
+//        case .restricted, .denied:
+//            break
+//        case .authorizedWhenInUse:
+//            locationManager?.requestAlwaysAuthorization()
+//        case .authorizedAlways:
+//            locationManager?.startUpdatingLocation()
+//            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+//        default:
+//            break
+//        }
+//    }
+//}
 
 
