@@ -151,7 +151,7 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
         let btn=UIButton()
         btn.setTitle("< Previous", for: .normal)
         btn.setTitleColor(UIColor.white, for: .normal)
-        btn.backgroundColor=UIColor.orange
+        btn.backgroundColor=UIColor.black
         btn.translatesAutoresizingMaskIntoConstraints=false
         btn.addTarget(self, action: #selector(btnPrevNextAction), for: .touchUpInside)
         return btn
@@ -167,26 +167,6 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
         btn.addTarget(self, action: #selector(btnPrevNextAction), for: .touchUpInside)
         return btn
     }()
-    
-//    let lblQueNumber: UILabel = {
-//        let lbl=UILabel()
-//        lbl.text="0 / 0"
-//        lbl.textColor=UIColor.gray
-//        lbl.textAlignment = .left
-//        lbl.font = UIFont.systemFont(ofSize: 16)
-//        lbl.translatesAutoresizingMaskIntoConstraints=false
-//        return lbl
-//    }()
-    
-//    let lblScore: UILabel = {
-//        let lbl=UILabel()
-//        lbl.text="0 / 0"
-//        lbl.textColor=UIColor.gray
-//        lbl.textAlignment = .right
-//        lbl.font = UIFont.systemFont(ofSize: 16)
-//        lbl.translatesAutoresizingMaskIntoConstraints=false
-//        return lbl
-//    }()
 }
 
 extension SafeActionsViewController: SafeActionsCollectionViewCellDelegate {

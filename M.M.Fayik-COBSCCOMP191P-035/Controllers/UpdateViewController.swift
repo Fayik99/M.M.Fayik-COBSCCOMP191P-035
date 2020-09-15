@@ -84,7 +84,6 @@ class UpdateViewController: UIViewController {
         label.numberOfLines = 3
         label.font = UIFont(name: "Avenir-Medium", size: 18)
         label.textColor = UIColor.black
-        //label.backgroundColor = .red
         return label
     }()
     
@@ -92,7 +91,6 @@ class UpdateViewController: UIViewController {
         let button = UIButton(type: .custom)
         let boldConfig = UIImage.SymbolConfiguration(weight: .bold)
         button.setImage(UIImage(systemName: "chevron.right", withConfiguration: boldConfig), for: .normal)
-        //button.backgroundColor = .green
         button.addTarget(self, action: #selector(showSurveyController), for: .touchUpInside)
         return button
     }()

@@ -84,7 +84,7 @@ class SettingsViewController: UIViewController {
 //
 //    }()
     
-    private let profileTile: UIButton = {
+    private let baseProfile: UIButton = {
           let tile = UIButton()
           tile.backgroundColor = .white
           
@@ -103,17 +103,17 @@ class SettingsViewController: UIViewController {
           arrow.anchor(right: tile.rightAnchor, paddingRight: 20, width: 14, height: 24)
           arrow.centerY(inView: tile)
           
-          let separatorView = UIView()
-          separatorView.backgroundColor = .lightGray
-          tile.addSubview(separatorView)
-          separatorView.anchor(left: tile.leftAnchor, bottom: tile.bottomAnchor, right: tile.rightAnchor, paddingLeft: 8, paddingRight: 8, height: 0.75)
+          let separator = UIView()
+          separator.backgroundColor = .lightGray
+          tile.addSubview(separator)
+          separator.anchor(left: tile.leftAnchor, bottom: tile.bottomAnchor, right: tile.rightAnchor, paddingLeft: 8, paddingRight: 8, height: 0.75)
           
           tile.addTarget(self, action: #selector(showProfile), for: .touchUpInside)
           
           return tile
       }()
       
-      private let contactTile: UIButton = {
+      private let baseContact: UIButton = {
           let tile = UIButton()
           tile.backgroundColor = .white
           
@@ -132,17 +132,17 @@ class SettingsViewController: UIViewController {
           arrow.anchor(right: tile.rightAnchor, paddingRight: 20, width: 14, height: 24)
           arrow.centerY(inView: tile)
           
-          let separatorView = UIView()
-          separatorView.backgroundColor = .lightGray
-          tile.addSubview(separatorView)
-          separatorView.anchor(left: tile.leftAnchor, bottom: tile.bottomAnchor, right: tile.rightAnchor, paddingLeft: 8, paddingRight: 8, height: 0.75)
+          let separator = UIView()
+          separator.backgroundColor = .lightGray
+          tile.addSubview(separator)
+          separator.anchor(left: tile.leftAnchor, bottom: tile.bottomAnchor, right: tile.rightAnchor, paddingLeft: 8, paddingRight: 8, height: 0.75)
           
           tile.addTarget(self, action: #selector(showContactUs), for: .touchUpInside)
           
           return tile
       }()
       
-      private let shareTile: UIButton = {
+      private let baseShare: UIButton = {
           let tile = UIButton()
           tile.backgroundColor = .white
           
@@ -165,27 +165,17 @@ class SettingsViewController: UIViewController {
           return tile
       }()
       
-      private let blankView: UIView = {
+      private let grayLine: UIView = {
           let blank = UIView()
           blank.backgroundColor = .white
           
-          let separatorView = UIView()
-          separatorView.backgroundColor = .lightGray
-          blank.addSubview(separatorView)
-          separatorView.anchor(left: blank.leftAnchor, bottom: blank.bottomAnchor, right: blank.rightAnchor, paddingLeft: 8, paddingRight: 8, height: 0.75)
+          let separator = UIView()
+          separator.backgroundColor = .lightGray
+          blank.addSubview(separator)
+          separator.anchor(left: blank.leftAnchor, bottom: blank.bottomAnchor, right: blank.rightAnchor, paddingLeft: 8, paddingRight: 8, height: 0.75)
           
           return blank
       }()
-      
-//      private let logoutButton: UIButton = {
-//          let button = UIButton()
-//          button.backgroundColor = .white
-//          button.setTitle("L O G O U T", for: .normal)
-//          button.setTitleColor(.black, for: .normal)
-//          button.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 14)
-//          button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
-//          return button
-//      }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -222,7 +212,7 @@ class SettingsViewController: UIViewController {
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
-        let stack = UIStackView(arrangedSubviews: [profileTile, contactTile, shareTile])
+        let stack = UIStackView(arrangedSubviews: [baseProfile, baseContact, baseShare])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.spacing = 0
@@ -230,28 +220,14 @@ class SettingsViewController: UIViewController {
         view.addSubview(stack)
         stack.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, height: 210)
         
-//        view.addSubview(logoutButton)
-//        logoutButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, height: 60)
         view.addSubview(SignOutButton)
         SignOutButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 0, paddingRight: 0)
         
-        view.addSubview(blankView)
-        blankView.anchor(top: stack.bottomAnchor, left: view.leftAnchor, bottom: SignOutButton.topAnchor, right: view.rightAnchor)
+        view.addSubview(grayLine)
+        grayLine.anchor(top: stack.bottomAnchor, left: view.leftAnchor, bottom: SignOutButton.topAnchor, right: view.rightAnchor)
         
         view.addSubview(BackButton)
         BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
-//
-//        view.addSubview(ProfileButton)
-//        ProfileButton.anchor(top: titleLabel.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 35, paddingLeft: 12, paddingRight: 0)
-//
-//        view.addSubview(AboutButton)
-//        AboutButton.anchor(top: ProfileButton.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 12, paddingRight: 0)
-//
-//        view.addSubview(ShareFButton)
-//        ShareFButton.anchor(top: AboutButton.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 12, paddingRight: 0)
-//
-       
-//
     }
     
     @objc func signOut() {
