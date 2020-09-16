@@ -118,7 +118,7 @@ class HomeDashBoardViewController: UIViewController{
     }()
     
     let infectedImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "bell") )
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Yellow circle") )
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         
@@ -126,7 +126,7 @@ class HomeDashBoardViewController: UIViewController{
     }()
     
     let deathsImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "bell") )
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Red circle") )
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         
@@ -134,7 +134,7 @@ class HomeDashBoardViewController: UIViewController{
     }()
     
     let recoveredImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "bell") )
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Green circle") )
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         
@@ -258,7 +258,7 @@ class HomeDashBoardViewController: UIViewController{
         //corona case count down
         let infectedStackView = UIView()
         infectedStackView.translatesAutoresizingMaskIntoConstraints = false
-          infectedStackView.backgroundColor = .white
+        infectedStackView.backgroundColor = .white
         //view.addSubview(infectedStackView)
         infectedStackView.addSubview(infectedImageView)
         infectedStackView.addSubview(infectedTextview)

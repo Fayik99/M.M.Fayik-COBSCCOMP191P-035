@@ -39,7 +39,6 @@ class ProfileViewController: UIViewController{
         label.textColor = UIColor.black
         label.textAlignment = .center
         
-        
         return label
     }()
     
