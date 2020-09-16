@@ -17,7 +17,8 @@ class SettingsViewController: UIViewController {
         
         let label = UILabel()
         label.text = "Settings"
-        label.font = UIFont(name: "Avenir-Light", size: 30)
+        //label.font = UIFont(name: "Avenir-Light", size: 30)
+        label.font = UIFont(name:"HelveticaNeue-Bold", size: 27)
         label.textColor = UIColor.black
         
         return label

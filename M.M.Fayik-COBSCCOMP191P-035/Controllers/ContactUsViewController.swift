@@ -14,7 +14,8 @@ class ContactUsViewController: UIViewController {
         
         let label = UILabel()
         label.text = "Contact Us / About Us"
-        label.font = UIFont(name: "Avenir-Light", size: 25)
+        //label.font = UIFont(name: "Avenir-Light", size: 25)
+        label.font = UIFont(name:"HelveticaNeue-Bold", size: 27)
         label.textColor = UIColor.black
         
         return label
@@ -33,10 +34,10 @@ class ContactUsViewController: UIViewController {
         
         let label = UILabel()
         label.text = "This is an iOS app designed and developed by Fayik Muzammil. This app will help everyone to identify nearby covid 19 patients and avoid going to those places. App will notify you by an alert. Also we provided safe actions you need to follow and keep safe everyone from this pandemic."
-        label.font = UIFont(name: "Avenir-Light", size: 17)
+        label.font = UIFont(name: "Avenir-medium", size: 17)
         label.textColor = UIColor.black
         label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
+        label.numberOfLines = 6
 //        label.layer.borderColor = UIColor.darkGray.cgColor
 //        label.layer.borderWidth = 3.0
         
@@ -47,11 +48,10 @@ class ContactUsViewController: UIViewController {
         
         let label = UILabel()
         label.text = "All rights reserved 2020 Fayik Inc"
-        label.font = UIFont(name: "Avenir-Light", size: 13)
+        //label.font = UIFont(name: "Avenir-Light", size: 13)
+        label.font = UIFont(name:"HelveticaNeue-Bold", size: 14)
         label.textColor = UIColor.black
         label.textAlignment = .center
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
         
         return label
     }()
@@ -72,9 +72,9 @@ class ContactUsViewController: UIViewController {
         
         view.addSubview(BackButton)
         BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
-        
+    
         view.addSubview(AboutLabel)
-        AboutLabel.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 15, paddingRight: 15, width: 280, height: 190)
+        AboutLabel.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 15, paddingRight: 15, height: 190)
         
         view.addSubview(copyRightLabel)
         copyRightLabel.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)

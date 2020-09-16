@@ -25,7 +25,7 @@ class UpdateViewController: UIViewController {
     private let titleLabel: UILabel = {
            let label = UILabel()
            label.text = "C R E A T E +"
-           label.font = UIFont(name: "Avenir-Light", size: 25)
+           label.font = UIFont(name: "Avenir-medium", size: 25)
            label.textColor = .black
            return label
        }()
@@ -280,7 +280,9 @@ class UpdateViewController: UIViewController {
             // Database.database().reference().child("user temperature").child(userID).updateChildValues(values) { (error, ref) in
             Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
                 
-                print("DEBUG: Data saved...")
+                let ac = UIAlertController(title: "Temperature Update", message: "Successfully updated", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(ac, animated: true)
                 self.setUI()
                 self.tempUpdate.text = ""
             }

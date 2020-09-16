@@ -24,7 +24,8 @@ class ProfileViewController: UIViewController{
         
         let label = UILabel()
         label.text = "User Profile"
-        label.font = UIFont(name: "Avenir-Light", size: 30)
+        //label.font = UIFont(name: "Avenir-Light", size: 30)
+        label.font = UIFont(name:"HelveticaNeue-Bold", size: 27)
         label.textColor = UIColor.black
         
         return label
@@ -34,7 +35,7 @@ class ProfileViewController: UIViewController{
         
         let label = UILabel()
         label.text = "User Name"
-        label.font = UIFont(name: "Avenir-Light", size: 25)
+        label.font = UIFont(name: "Avenir-medium", size: 25)
         label.textColor = UIColor.black
         label.textAlignment = .center
         
@@ -214,14 +215,14 @@ class ProfileViewController: UIViewController{
         
         let stack = UIStackView(arrangedSubviews: [fullNameTextField,indexTextField,countryDropDown])
         stack.axis = .vertical
-        stack.distribution = .fillProportionally
+        stack.distribution = .fillEqually
         stack.spacing = 24
         
         view.addSubview(stack)
         stack.anchor(top: tempLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingRight: 16)
     
         view.addSubview(updateButton)
-        updateButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 0, paddingRight: 0)
+        updateButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
         
         view.addSubview(blankView)
         blankView.anchor(top: stack.bottomAnchor, left: view.leftAnchor, bottom: updateButton.topAnchor, right: view.rightAnchor)

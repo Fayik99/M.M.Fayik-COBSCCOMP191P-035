@@ -19,7 +19,7 @@ class SurveyResultViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         setupViews()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.black
     }
     
     func showRating() {
@@ -58,7 +58,9 @@ class SurveyResultViewController: UIViewController {
         
         Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
             
-            print("DEBUG: Data saved...")
+            let ac = UIAlertController(title: "Survey", message: "Successfully submitted", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
         }
             let submit = UpdateViewController()
             submit.modalPresentationStyle = .fullScreen
@@ -101,7 +103,8 @@ class SurveyResultViewController: UIViewController {
         lbl.text="Your Result"
         lbl.textColor=UIColor.darkGray
         lbl.textAlignment = .center
-        lbl.font = UIFont.systemFont(ofSize: 46)
+        //lbl.font = UIFont.systemFont(ofSize: 46)
+        lbl.font = UIFont(name:"Avenir-medium", size: 45)
         lbl.numberOfLines=2
         lbl.translatesAutoresizingMaskIntoConstraints=false
         return lbl
@@ -110,7 +113,7 @@ class SurveyResultViewController: UIViewController {
     let lblScore: UILabel = {
         let lbl=UILabel()
         lbl.text="0 / 0"
-        lbl.textColor=UIColor.black
+        lbl.textColor=UIColor.mainBlueTint
         lbl.textAlignment = .center
         lbl.font = UIFont.boldSystemFont(ofSize: 24)
         lbl.translatesAutoresizingMaskIntoConstraints=false
