@@ -255,14 +255,27 @@ class UpdateViewController: UIViewController {
     }
     
     @objc func CreateNotifications() {
-        let notification = CreateNotificationsViewController()
-        notification.modalPresentationStyle = .fullScreen
-        present(notification, animated: true, completion: {
-            // Create notifications
+        
+        let userID = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user body temparature value
+            let value = snapshot.value as? NSDictionary
+            let account = value?["accountType"] as? Int
+            
+            if account == 0 {
+                let ac = UIAlertController(title: "Authorization", message: "Only Staff users can create news", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(ac, animated: true)
+            }
+            else {
+                
+                let notification = CreateNotificationsViewController()
+                notification.modalPresentationStyle = .fullScreen
+                self.present(notification, animated: true, completion: {
+                    // Create notifications
+                })
+            }
         })
-        //        let ac = UIAlertController(title: "Authorization", message: "Only Staff role can access", preferredStyle: .alert)
-        //        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        //        self.present(ac, animated: true)
     }
     
     @objc func TempUpdateFb() {
