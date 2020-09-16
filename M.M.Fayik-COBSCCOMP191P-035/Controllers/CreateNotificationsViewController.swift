@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseCore
+import FirebaseDatabase
+import FirebaseAuth
 
 class CreateNotificationsViewController: UIViewController {
 
@@ -36,18 +40,20 @@ class CreateNotificationsViewController: UIViewController {
         return tileView
     }()
     
-    private let createNotificationTF: UITextField = {
+    private let createNotificationTF: UITextView = {
         
-        let name = UITextField()
-        name.borderStyle = .roundedRect
-        name.font = UIFont(name: "Avenir-medium", size: 18)
-        name.textColor = .black
-        name.keyboardAppearance = .dark
-        name.isSecureTextEntry = false
-        name.placeholder = "Type here..."
-        name.textAlignment = .left
+        let text = UITextView()
+       // text.borderStyle = .roundedRect
+        text.font = UIFont(name: "Avenir-medium", size: 18)
+        text.textColor = .black
+        text.keyboardAppearance = .dark
+        text.isSecureTextEntry = false
+        text.layer.borderColor = UIColor.gray.cgColor
+        text.layer.borderWidth = 2
+        text.layer.cornerRadius = 5
+        //text.placeholder = "Type here..."
         
-        return name
+        return text
     }()
     
     private let SubmitNotificationsBtn: AuthUIButton = {
@@ -59,7 +65,7 @@ class CreateNotificationsViewController: UIViewController {
         button.layer.borderWidth  = 1.0
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(UIColor(white: 0.5, alpha: 1.5), for: .normal)
-       // button.addTarget(self, action: #selector(TempUpdateFb), for: UIControl.Event.touchUpInside)
+        button.addTarget(self, action: #selector(createNotifications), for: UIControl.Event.touchUpInside)
         
         return button
         
@@ -82,14 +88,14 @@ class CreateNotificationsViewController: UIViewController {
         titleLabel.centerX(inView: view)
         
         view.addSubview(notificationUpdateUIView)
-        notificationUpdateUIView.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 22, paddingLeft: 12, paddingRight: 12, height: 250)
+        notificationUpdateUIView.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 22, paddingLeft: 12, paddingRight: 12, height: 260)
         
         view.addSubview(createNotificationTF)
-        createNotificationTF.anchor(top: notificationUpdateUIView.topAnchor, left: notificationUpdateUIView.leftAnchor, right: notificationUpdateUIView.rightAnchor, paddingTop: 12, paddingLeft: 14, paddingRight: 14, height: 120)
+        createNotificationTF.anchor(top: notificationUpdateUIView.topAnchor, left: notificationUpdateUIView.leftAnchor, right: notificationUpdateUIView.rightAnchor, paddingTop: 15, paddingLeft: 14, paddingRight: 14, height: 150)
         
         
         view.addSubview(SubmitNotificationsBtn)
-        SubmitNotificationsBtn.anchor(top: createNotificationTF.bottomAnchor, left: notificationUpdateUIView.leftAnchor, right: notificationUpdateUIView.rightAnchor, paddingTop: 25, paddingLeft: 70, paddingRight: 70, height: 50)
+        SubmitNotificationsBtn.anchor(top: createNotificationTF.bottomAnchor, left: notificationUpdateUIView.leftAnchor, right: notificationUpdateUIView.rightAnchor, paddingTop: 30, paddingLeft: 90, paddingRight: 90, height: 50)
 
     }
     
@@ -98,5 +104,33 @@ class CreateNotificationsViewController: UIViewController {
         submit.modalPresentationStyle = .fullScreen
         present(submit, animated: true, completion: {
         })
+    }
+    
+    @objc func createNotifications() {
+        
+        guard let news = createNotificationTF.text else { return }
+        
+        let values = [
+            "news": news
+            ] as [String : Any]
+        
+        
+        if news.isEmpty {
+            
+            let ac = UIAlertController(title: "Create notifications", message: "Type your news", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        }
+        else {
+            
+            Database.database().reference().child("notifications-news").childByAutoId().updateChildValues(values) { (error, ref) in
+                
+                let ac = UIAlertController(title: "Create notifications", message: "Successfully created", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(ac, animated: true)
+                
+                self.createNotificationTF.text = ""
+            }
+        }
     }
 }

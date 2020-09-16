@@ -137,7 +137,7 @@ class HomeDashBoardViewController: UIViewController{
         let imageView = UIImageView(image: #imageLiteral(resourceName: "Green circle") )
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        
+
         return imageView
     }()
     

@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseCore
 
-class AllNewsViewController: UIViewController {
+class AllNewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
 
+     var tableView: UITableView!
+     var newsList =  [String]()
+    
     private let titleLabel: UILabel = {
         
         let label = UILabel()
@@ -35,6 +42,27 @@ class AllNewsViewController: UIViewController {
 
         view.backgroundColor = .systemGray6
         LoadUI()
+        
+        Database.database().reference().child("notifications-news").observe(.value, with: { (snapshot) in
+            
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let dict = child.value as? [String : AnyObject] ?? [:]
+                self.newsList.append(dict["news"] as! String)
+                
+                self.setTableView()
+            }
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return newsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath)
+        cell.textLabel?.text = newsList[indexPath.row]
+        return cell
     }
     
     func LoadUI() {
@@ -46,6 +74,18 @@ class AllNewsViewController: UIViewController {
         
         view.addSubview(BackButton)
         BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
+    
+    }
+    
+    func setTableView() {
+        
+        tableView = UITableView(frame: view.frame)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "NewsCell")
+        view.addSubview(tableView)
+        
+        tableView.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 10)
         
     }
     
