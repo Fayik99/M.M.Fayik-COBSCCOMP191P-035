@@ -255,10 +255,14 @@ class UpdateViewController: UIViewController {
     }
     
     @objc func CreateNotifications() {
-        
-        let ac = UIAlertController(title: "Authorization", message: "Only Staff role can access", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(ac, animated: true)
+        let notification = CreateNotificationsViewController()
+        notification.modalPresentationStyle = .fullScreen
+        present(notification, animated: true, completion: {
+            // Create notifications
+        })
+        //        let ac = UIAlertController(title: "Authorization", message: "Only Staff role can access", preferredStyle: .alert)
+        //        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        //        self.present(ac, animated: true)
     }
     
     @objc func TempUpdateFb() {

@@ -105,6 +105,7 @@ class HomeViewController: UIViewController {
 //    }
     
     func fetchUsers() {
+        
         guard let location = locationManager?.location else { return }
         Services.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }

@@ -13,6 +13,8 @@
 		11060A3C250E67C700F45F9E /* HomeDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A3B250E67C700F45F9E /* HomeDashBoardViewController.swift */; };
 		11060A3E251146D300F45F9E /* SafeActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A3D251146D300F45F9E /* SafeActionsViewController.swift */; };
 		11060A4625114BEA00F45F9E /* SafeActionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A4525114BEA00F45F9E /* SafeActionsCollectionViewCell.swift */; };
+		11060A4825120B9300F45F9E /* AllNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A4725120B9300F45F9E /* AllNewsViewController.swift */; };
+		11060A4A25120ECA00F45F9E /* CreateNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11060A4925120ECA00F45F9E /* CreateNotificationsViewController.swift */; };
 		115A596F24F1701200AB2946 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A596E24F1701200AB2946 /* UpdateViewController.swift */; };
 		115A597124F1710D00AB2946 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A597024F1710D00AB2946 /* SettingsViewController.swift */; };
 		117C2AB724F62401008549AB /* LocationinputActivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C2AB624F62401008549AB /* LocationinputActivation.swift */; };
@@ -66,6 +68,8 @@
 		11060A3B250E67C700F45F9E /* HomeDashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashBoardViewController.swift; sourceTree = "<group>"; };
 		11060A3D251146D300F45F9E /* SafeActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionsViewController.swift; sourceTree = "<group>"; };
 		11060A4525114BEA00F45F9E /* SafeActionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeActionsCollectionViewCell.swift; sourceTree = "<group>"; };
+		11060A4725120B9300F45F9E /* AllNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNewsViewController.swift; sourceTree = "<group>"; };
+		11060A4925120ECA00F45F9E /* CreateNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotificationsViewController.swift; sourceTree = "<group>"; };
 		115A596E24F1701200AB2946 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		115A597024F1710D00AB2946 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		117C2AB624F62401008549AB /* LocationinputActivation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationinputActivation.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				11060A3B250E67C700F45F9E /* HomeDashBoardViewController.swift */,
 				11060A3D251146D300F45F9E /* SafeActionsViewController.swift */,
 				11060A4525114BEA00F45F9E /* SafeActionsCollectionViewCell.swift */,
+				11060A4725120B9300F45F9E /* AllNewsViewController.swift */,
+				11060A4925120ECA00F45F9E /* CreateNotificationsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -524,12 +530,14 @@
 				117C2ABD24F62FA9008549AB /* Users.swift in Sources */,
 				117C2AB924F62739008549AB /* LocationInputView.swift in Sources */,
 				1187127424F2E07A00537EB3 /* LoginViewController.swift in Sources */,
+				11060A4825120B9300F45F9E /* AllNewsViewController.swift in Sources */,
 				117C2AD924FE6AAA008549AB /* SurveyCollectionViewCell.swift in Sources */,
 				11060A3C250E67C700F45F9E /* HomeDashBoardViewController.swift in Sources */,
 				117C2ACF24FD6359008549AB /* AuthUIButton.swift in Sources */,
 				117C2ABB24F62B5A008549AB /* LocationHandling.swift in Sources */,
 				115A596F24F1701200AB2946 /* UpdateViewController.swift in Sources */,
 				117C2ADB24FE6B04008549AB /* SurveyResultViewController.swift in Sources */,
+				11060A4A25120ECA00F45F9E /* CreateNotificationsViewController.swift in Sources */,
 				1187127624F2E0B000537EB3 /* SignUpViewController.swift in Sources */,
 				117C2AC124F6C4FB008549AB /* Services.swift in Sources */,
 				11060A4625114BEA00F45F9E /* SafeActionsCollectionViewCell.swift in Sources */,

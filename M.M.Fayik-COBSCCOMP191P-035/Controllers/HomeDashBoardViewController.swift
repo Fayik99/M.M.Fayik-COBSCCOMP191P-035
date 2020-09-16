@@ -45,7 +45,7 @@ class HomeDashBoardViewController: UIViewController{
     let btnSafeAction: UIButton = {
         
         let button = UIButton()
-        button.setTitle("Safe Actions  >", for: .normal)
+        button.setTitle("Safe Actions >", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +84,7 @@ class HomeDashBoardViewController: UIViewController{
         button.setImage(#imageLiteral(resourceName: "ArrowButton"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.contentMode = .scaleAspectFit
-      //  button.addTarget(self, action: #selector(showNews), for: UIControl.Event.touchUpInside)
+        button.addTarget(self, action: #selector(showNews), for: UIControl.Event.touchUpInside)
         
         return button
     }()
@@ -155,7 +155,7 @@ class HomeDashBoardViewController: UIViewController{
     
     let deathsTextview: UITextView = {
         let textView = UITextView()
-        let attributedText = NSMutableAttributedString(string:  "0", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40)])
+        let attributedText = NSMutableAttributedString(string:  "1", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40)])
         textView.attributedText = attributedText
         textView.textAlignment = .center
         textView.isEditable = false
@@ -423,11 +423,18 @@ class HomeDashBoardViewController: UIViewController{
     }
     
     @objc func showMap() {
-        
         let map = HomeViewController()
         map.modalPresentationStyle = .fullScreen
         present(map, animated: true, completion: {
             // map
+        })
+    }
+    
+    @objc func showNews() {
+        let news = AllNewsViewController()
+        news.modalPresentationStyle = .fullScreen
+        present(news, animated: true, completion: {
+            // news
         })
     }
 
