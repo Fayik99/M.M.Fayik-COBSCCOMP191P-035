@@ -14,14 +14,14 @@ import FirebaseAuth
 private let reuseIdentifier = "LocationCell"
 private let annotationIdentifier = "UserAnnotation"
 
-private enum ActionButtonConfiguration {
-    case showMenu
-    case dismissActionView
-    
-    init() {
-        self = .showMenu
-    }
-}
+//private enum ActionButtonConfiguration {
+//    case showMenu
+//    case dismissActionView
+//
+//    init() {
+//        self = .showMenu
+//    }
+//}
 
 class HomeViewController: UIViewController {
     // MARK: - Properties
@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
     private let tableView = UITableView()
     private var searchResults = [MKPlacemark]()
     private final let locationInputViewHeight: CGFloat = 200
-    private var actionButtonConfig = ActionButtonConfiguration()
+    //private var actionButtonConfig = ActionButtonConfiguration()
     private var route: MKRoute?
     
 //    private var users: Users? {
@@ -50,20 +50,25 @@ class HomeViewController: UIViewController {
 //        }
 //    }
     
-    private let actionButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "baseline_menu_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
-        button.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
-        return button
-    }()
+//    private let actionButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setImage(#imageLiteral(resourceName: "baseline_menu_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
+//        button.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
+//        return button
+//    }()
+    
+    private let backButton: UIButton = {
+          let button = UIButton(type: .system)
+          button.setImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
+          button.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
+          return button
+      }()
     
     // MARK: - Lifecycale
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //checkIsUserLoggedIn()
-        //signOut()
+    
         configure()
         fetchUsers()
         configureLocationInputActivationView()
@@ -74,22 +79,22 @@ class HomeViewController: UIViewController {
     
     // MARK: - Selectors
     
-    @objc func actionButtonPressed() {
-        switch actionButtonConfig {
-        case .showMenu:
-            print("DEBUG: Show menu")
-            break
-        case .dismissActionView:
-            removeAnnotationsAndOverlays()
-            mapView.showAnnotations(mapView.annotations, animated: true)
-            
-            UIView.animate(withDuration: 0.3) {
-                self.inputActivationUIView.alpha = 1
-                self.configureActionButton(config: .showMenu)
-            }
-            break
-        }
-    }
+//    @objc func actionButtonPressed() {
+//        switch actionButtonConfig {
+//        case .showMenu:
+//            print("DEBUG: Show menu")
+//            break
+//        case .dismissActionView:
+//            removeAnnotationsAndOverlays()
+//            mapView.showAnnotations(mapView.annotations, animated: true)
+//
+//            UIView.animate(withDuration: 0.3) {
+//                self.inputActivationUIView.alpha = 1
+//                self.configureActionButton(config: .showMenu)
+//            }
+//            break
+//        }
+//    }
     
 //    func fetchUserData() {
 //        guard let currentUid = Auth.auth().currentUser?.uid else { return }
@@ -126,16 +131,16 @@ class HomeViewController: UIViewController {
     }
     // MARK: - Helper Function
     
-    fileprivate func configureActionButton(config: ActionButtonConfiguration) {
-        switch config {
-        case .showMenu:
-            self.actionButton.setImage(#imageLiteral(resourceName: "baseline_menu_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
-            self.actionButtonConfig = .showMenu
-        case .dismissActionView:
-            actionButton.setImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
-            actionButtonConfig = .dismissActionView
-        }
-    }
+//    fileprivate func configureActionButton(config: ActionButtonConfiguration) {
+//        switch config {
+//        case .showMenu:
+//            self.actionButton.setImage(#imageLiteral(resourceName: "baseline_menu_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
+//            self.actionButtonConfig = .showMenu
+//        case .dismissActionView:
+//            actionButton.setImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
+//            actionButtonConfig = .dismissActionView
+//        }
+//    }
     
     func configure() {
         configureUi()
@@ -147,9 +152,9 @@ class HomeViewController: UIViewController {
     func configureUi() {
         confugireMapView()
       
-        view.addSubview(actionButton)
-        actionButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
-                            paddingTop: 16, paddingLeft: 20, width: 30, height: 30)
+        view.addSubview(backButton)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor,
+                            paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
 
         
         configureTableView()
@@ -160,7 +165,7 @@ class HomeViewController: UIViewController {
         view.addSubview(inputActivationUIView)
         inputActivationUIView.centerX(inView: view)
         inputActivationUIView.setDimensions(height: 50, width: view.frame.width - 64)
-        inputActivationUIView.anchor(top: actionButton.bottomAnchor, paddingTop: 32)
+        inputActivationUIView.anchor(top: backButton.bottomAnchor, paddingTop: 30)
         inputActivationUIView.alpha = 0
         inputActivationUIView.delegate = self
         
@@ -268,6 +273,15 @@ private extension HomeViewController {
             mapView.removeOverlay(mapView.overlays[0])
         }
     }
+    
+    @objc func handleBackTapped() {
+        
+        let home = TabBarViewController()
+        home.modalPresentationStyle = .fullScreen
+        present(home, animated: true, completion: {
+            // Back
+        })
+    }
 }
 
 // MARK: - MKMapViewDelegate
@@ -369,7 +383,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPlacemark = searchResults[indexPath.row]
         
-        configureActionButton(config: .dismissActionView)
+        //configureActionButton(config: .dismissActionView)
         
         let destination = MKMapItem(placemark: selectedPlacemark)
         generatePolyline(toDestination: destination)
