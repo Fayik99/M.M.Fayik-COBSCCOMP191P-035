@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController {
         button.backgroundColor = .white
         button.setTitle("L O G O U T", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 20)
+        button.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
         button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
         
         return button

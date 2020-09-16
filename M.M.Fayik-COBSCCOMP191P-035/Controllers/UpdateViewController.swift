@@ -37,7 +37,7 @@ class UpdateViewController: UIViewController {
         tileView.backgroundColor = .white
         tileView.layer.cornerRadius = 5
         tileView.layer.masksToBounds = true
-        tileView.addTarget(self, action: #selector(showSurveyController), for: .touchUpInside)
+        tileView.addTarget(self, action: #selector(CreateNotifications), for: .touchUpInside)
         return tileView
     }()
     
@@ -54,7 +54,6 @@ class UpdateViewController: UIViewController {
         let button = UIButton(type: .custom)
         let boldConfig = UIImage.SymbolConfiguration(weight: .bold)
         button.setImage(UIImage(systemName: "chevron.right", withConfiguration: boldConfig), for: .normal)
-        //button.backgroundColor = .green
         return button
     }()
     
@@ -82,7 +81,7 @@ class UpdateViewController: UIViewController {
         let label = UILabel()
         label.text = "New Survey"
         label.numberOfLines = 3
-        label.font = UIFont(name: "Avenir-Medium", size: 18)
+        label.font = UIFont(name: "Avenir-Medium", size: 17)
         label.textColor = UIColor.black
         return label
     }()
@@ -254,6 +253,14 @@ class UpdateViewController: UIViewController {
             // Back
         })
     }
+    
+    @objc func CreateNotifications() {
+        
+        let ac = UIAlertController(title: "Authorization", message: "Only Staff role can access", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(ac, animated: true)
+    }
+    
     @objc func TempUpdateFb() {
         
         guard let TempUpdate = tempUpdate.text else { return }

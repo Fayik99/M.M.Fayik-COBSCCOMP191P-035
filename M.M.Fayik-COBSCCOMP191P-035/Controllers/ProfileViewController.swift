@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController{
         
         let label = UILabel()
         label.text = "User Name"
-        label.font = UIFont(name: "Avenir-Light", size: 24)
+        label.font = UIFont(name: "Avenir-Light", size: 25)
         label.textColor = UIColor.black
         label.textAlignment = .center
         
@@ -57,7 +57,7 @@ class ProfileViewController: UIViewController{
         button.backgroundColor = .white
         button.setTitle("U P D A T E", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 20)
+        button.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
         button.addTarget(self, action: #selector(updateOthers), for: .touchUpInside)
         
         return button

@@ -232,11 +232,6 @@ class HomeDashBoardViewController: UIViewController{
         SeeMoreContainerView.translatesAutoresizingMaskIntoConstraints=false
         view.addSubview(SeeMoreContainerView)
         
-        let MapView = UIView()
-        MapView.translatesAutoresizingMaskIntoConstraints=false
-        view.addSubview(MapView)
-        
-        confugireMapView()
         fetchUsers()
         AccessLocationServices()
         
@@ -247,9 +242,7 @@ class HomeDashBoardViewController: UIViewController{
         ArrowButtonContainerView.backgroundColor = .white
         CaseUpdateLabelContainerView.backgroundColor = .white
         SeeMoreContainerView.backgroundColor = .white
-        MapView.backgroundColor = .orange
-        
-        
+   
 //      stayHomeImageContainerView.backgroundColor = .orange
 //      stayHomeTextContainerView.backgroundColor = .blue
     
@@ -261,7 +254,6 @@ class HomeDashBoardViewController: UIViewController{
         ArrowButtonContainerView.addSubview(arrowButton)
         CaseUpdateLabelContainerView.addSubview(CaseUpdateLabel)
         SeeMoreContainerView.addSubview(SeeMoreButton)
-        MapView.addSubview(mapView)
         
         //corona case count down
         let infectedStackView = UIView()
@@ -290,9 +282,9 @@ class HomeDashBoardViewController: UIViewController{
         recoveredStackView.addSubview(recoveredTextview)
         recoveredStackView.addSubview(recoveredLabel)
 
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .systemGray5
             
-        stayHomeImageContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        stayHomeImageContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         stayHomeImageContainerView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: -18).isActive = true
         stayHomeImageContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.5).isActive = true
         stayHomeImageContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2).isActive = true
@@ -301,7 +293,7 @@ class HomeDashBoardViewController: UIViewController{
         stayhomeImageView.heightAnchor.constraint(equalTo: stayHomeImageContainerView.heightAnchor, multiplier: 0.8).isActive = true
         stayhomeImageView.widthAnchor.constraint(equalTo: stayHomeImageContainerView.widthAnchor, multiplier: 0.8, constant: 25).isActive = true
 
-        stayHomeTextContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        stayHomeTextContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         stayHomeTextContainerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 18).isActive = true
         stayHomeTextContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.6).isActive = true
         stayHomeTextContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2).isActive = true
@@ -320,13 +312,13 @@ class HomeDashBoardViewController: UIViewController{
         
         HomeNotifyTextContainerView.topAnchor.constraint(equalTo: stayHomeTextContainerView.bottomAnchor, constant: 10).isActive = true
         HomeNotifyTextContainerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -48).isActive = true
-        HomeNotifyTextContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.75).isActive = true
+        HomeNotifyTextContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.77).isActive = true
         HomeNotifyTextContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1).isActive = true
         
         notifyHomeTextView.centerYAnchor.constraint(equalTo: notifyImageView.centerYAnchor, constant: -1).isActive = true
         
         ArrowButtonContainerView.topAnchor.constraint(equalTo: stayHomeTextContainerView.bottomAnchor, constant: 10).isActive = true
-        ArrowButtonContainerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 385).isActive = true
+        ArrowButtonContainerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 10).isActive = true
         ArrowButtonContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.15).isActive = true
         ArrowButtonContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.1).isActive = true
         
@@ -335,20 +327,20 @@ class HomeDashBoardViewController: UIViewController{
         arrowButton.widthAnchor.constraint(equalTo: ArrowButtonContainerView.widthAnchor, multiplier: 0.5, constant: 25).isActive = true
         
         CaseUpdateLabelContainerView.topAnchor.constraint(equalTo: HomeNotifyTextContainerView.bottomAnchor, constant: 10).isActive = true
-        CaseUpdateLabelContainerView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: -20).isActive = true
-        CaseUpdateLabelContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.7).isActive = true
+        CaseUpdateLabelContainerView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: -18).isActive = true
+        CaseUpdateLabelContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.71).isActive = true
         CaseUpdateLabelContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.05).isActive = true
 
         CaseUpdateLabel.centerYAnchor.constraint(equalTo: CaseUpdateLabelContainerView.centerYAnchor).isActive = true
-        CaseUpdateLabel.centerXAnchor.constraint(equalTo: CaseUpdateLabelContainerView.centerXAnchor, constant: -40).isActive = true
+        CaseUpdateLabel.centerXAnchor.constraint(equalTo: CaseUpdateLabelContainerView.centerXAnchor, constant: -39).isActive = true
         
         SeeMoreContainerView.topAnchor.constraint(equalTo: HomeNotifyTextContainerView.bottomAnchor, constant: 10).isActive = true
-        SeeMoreContainerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 20).isActive = true
+        SeeMoreContainerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 18).isActive = true
         SeeMoreContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.5).isActive = true
         SeeMoreContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.05).isActive = true
         
         SeeMoreButton.centerYAnchor.constraint(equalTo: SeeMoreContainerView.centerYAnchor).isActive = true
-        SeeMoreButton.centerXAnchor.constraint(equalTo: SeeMoreContainerView.centerXAnchor, constant: 50).isActive = true
+        SeeMoreButton.centerXAnchor.constraint(equalTo: SeeMoreContainerView.centerXAnchor, constant: 48).isActive = true
         
         let coundDownControlStackView = UIStackView(arrangedSubviews: [infectedStackView, deathsStackView, recoveredStackView])
         coundDownControlStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -397,17 +389,28 @@ class HomeDashBoardViewController: UIViewController{
         recoveredLabel.topAnchor.constraint(equalTo: recoveredTextview.bottomAnchor, constant: 0).isActive = true
         recoveredLabel.centerXAnchor.constraint(equalTo: recoveredStackView.centerXAnchor).isActive = true
         
-        //Map
-        MapView.topAnchor.constraint(equalTo: coundDownControlStackView.bottomAnchor, constant: 15).isActive = true
-        MapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -240).isActive = true
-        MapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
-        MapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        MapView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.31).isActive = true
+        let mapStackView = UIView()
+        mapStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(mapStackView)
+        
+        mapStackView.addSubview(mapView)
+        mapView.frame = view.frame
 
-        mapView.topAnchor.constraint(equalTo: MapView.topAnchor, constant: 15).isActive = true
-        mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        mapView.bottomAnchor.constraint(equalTo: MapView.safeAreaLayoutGuide.bottomAnchor, constant: -240).isActive = true
+        mapView.showsUserLocation = true
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.userTrackingMode = .follow
+        mapView.delegate = self
+
+        mapStackView.topAnchor.constraint(equalTo: infectedStackView.bottomAnchor).isActive = true
+        mapStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        mapStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -18).isActive = true
+        mapStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 18).isActive = true
+       // mapStackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.25).isActive = true
+
+        mapView.topAnchor.constraint(equalTo: mapStackView.topAnchor).isActive = true
+        mapView.leadingAnchor.constraint(equalTo: mapStackView.leadingAnchor).isActive = true
+        mapView.trailingAnchor.constraint(equalTo: mapStackView.trailingAnchor).isActive = true
+        mapView.bottomAnchor.constraint(equalTo: mapStackView.safeAreaLayoutGuide.bottomAnchor).isActive = true
 
     }
     
@@ -453,17 +456,7 @@ class HomeDashBoardViewController: UIViewController{
             }
         }
     }
-
-    func confugireMapView() {
-
-        mapView.frame = view.frame
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
-        mapView.delegate = self
-    }
-
-
-
+    
     func removeAnnotationsAndOverlays() {
         mapView.annotations.forEach { (annotation) in
             if let anno = annotation as? MKPointAnnotation {
