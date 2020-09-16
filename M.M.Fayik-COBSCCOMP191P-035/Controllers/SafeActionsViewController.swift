@@ -50,7 +50,7 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
         let que2 = safeAction(imgName: "avoidcrowd", headerText: "Avoid crowd", description: "Please avoid crowdwd places")
         let que3 = safeAction(imgName: "mask", headerText: "Wear facemask", description: "Wearing facemask will save yourself aswell as others from spreading diseases")
         let que4 = safeAction(imgName: "sanitizer", headerText: "Use hand sanitizer", description: "Sanitize your hand frequently")
-        let que5 = safeAction(imgName: "socialdis", headerText: "Maintain socialdistancing ?", description: "Maintain atleast 1 meter gap inbetween yourself and others when going out")
+        let que5 = safeAction(imgName: "socialdis", headerText: "Maintain social distance", description: "Maintain atleast 1 meter gap inbetween yourself and others when going out")
       
         questionsArray = [que1, que2, que3,que4,que5]
         
