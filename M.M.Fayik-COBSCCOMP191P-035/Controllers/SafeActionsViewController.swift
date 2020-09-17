@@ -26,7 +26,7 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title="Safe Actions"
-        self.view.backgroundColor=UIColor.systemGray6
+        self.view.backgroundColor = UIColor.white
         
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -81,6 +81,7 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
 //          //  currentQuestionNumber = currentPage + 1
 //        }
 //    }
+    
     @objc func navToHome(){
         let vc = TabBarViewController()
         vc.modalPresentationStyle = .fullScreen
@@ -125,7 +126,12 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
         //        myCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
         //        myCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive=true
         
-        myCollectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+        myCollectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 35)
+        
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
         self.view.addSubview(btnPrev)
         btnPrev.heightAnchor.constraint(equalToConstant: 50).isActive=true
@@ -138,6 +144,9 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
         btnNext.widthAnchor.constraint(equalTo: btnPrev.widthAnchor).isActive=true
         btnNext.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
         btnNext.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive=true
+        
+        self.view.addSubview(BackButton)
+        BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
         
         //        self.view.addSubview(lblQueNumber)
         //        lblQueNumber.heightAnchor.constraint(equalToConstant: 20).isActive=true
@@ -167,6 +176,25 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
         btn.addTarget(self, action: #selector(btnPrevNextAction), for: .touchUpInside)
         return btn
     }()
+    
+    private let BackButton: UIButton = {
+        let button = UIButton()
+        // button.setTitle("Back", for: .normal)
+        button.setBackgroundImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp"), for: .normal)
+        button.addTarget(self, action: #selector(showHomeDaseController), for: UIControl.Event.touchUpInside)
+        
+        return button
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Safe Actions"
+        //label.font = UIFont(name: "Avenir-Light", size: 30)
+        label.font = UIFont(name:"HelveticaNeue-Bold", size: 27)
+        label.textColor = UIColor.black
+        
+        return label
+    }()
 }
 
 extension SafeActionsViewController: SafeActionsCollectionViewCellDelegate {
@@ -190,6 +218,14 @@ extension SafeActionsViewController: SafeActionsCollectionViewCellDelegate {
         print(index ?? "index not found")
         return index
     }
+    
+    @objc func showHomeDaseController() {
+           let back = TabBarViewController()
+           back.modalPresentationStyle = .fullScreen
+           present(back, animated: true, completion: {
+               // Back to home
+           })
+       }
 }
 
 

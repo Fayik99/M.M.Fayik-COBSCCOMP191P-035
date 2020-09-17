@@ -16,8 +16,10 @@ private let reuseIdentifier = "LocationCell"
 private let annotationIdentifier = "UserAnnotation"
 
 class HomeViewController: UIViewController {
-    // MARK: - Properties
     
+    var infectedUsers = [AnyObject]()
+    
+    // MARK: - Properties
     private let mapView = MKMapView()
     private let locationManager = LocationHandling.shared.locationManager
     
@@ -71,6 +73,19 @@ class HomeViewController: UIViewController {
     
     func fetchUsers() {
         
+//        Database.database().reference().child("users").observe(.value, with: { (snapshot) in
+//
+//            for child in snapshot.children.allObjects as! [DataSnapshot] {
+//                let dict = child.value as? [String : AnyObject] ?? [:]
+//                let sur = dict["survey"] as? Int ?? 0
+//
+//                if sur >= 3 {
+//
+//                    infectedUsers.append(contentsOf: child.value(forKey: [dict]))
+//                }
+//            }
+//        })
+                
         guard let location = locationManager?.location else { return }
         Services.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }

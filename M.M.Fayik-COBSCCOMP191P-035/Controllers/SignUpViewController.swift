@@ -122,19 +122,9 @@ class SignUpViewController: UIViewController {
     func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
         REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
             
-            //handle error
             
-//            let keyWindow = UIApplication.shared.connectedScenes
-//                .filter({$0.activationState == .foregroundActive})
-//                .map({$0 as? UIWindowScene})
-//                .compactMap({$0})
-//                .first?.windows
-//                .filter({$0.isKeyWindow}).first
-            
-//            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
-//            controller.configure()
-                      print("Success: SignUp Successful")
-                      self.dismiss(animated: true, completion: nil)
+            print("Success: SignUp Successful")
+            self.dismiss(animated: true, completion: nil)
         }
     }
     // MARK: - Functions
@@ -196,15 +186,7 @@ class SignUpViewController: UIViewController {
         self.uploadUserDataAndShowHomeController(uid: uid, values: values)
     }
 }
-            
-//            guard let uid = result?.user.uid else { return }
-//
-//            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
-//
-//                print("Success: Successfuly Registerd...")
-//            }
-//        }
-    
+
     @objc func handleShowLogIn() {
         navigationController?.popViewController(animated: true)
     }

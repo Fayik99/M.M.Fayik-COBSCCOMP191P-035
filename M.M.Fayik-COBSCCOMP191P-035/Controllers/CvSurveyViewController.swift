@@ -32,7 +32,7 @@ class CvSurveyViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         view.backgroundColor = .black
         
-        self.view.backgroundColor=UIColor.white
+        self.view.backgroundColor = UIColor.white
         
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -131,6 +131,14 @@ class CvSurveyViewController: UIViewController, UICollectionViewDelegate, UIColl
         myCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive=true
         myCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive=true
         
+        self.view.addSubview(BackButton)
+        BackButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor, paddingTop: 5, paddingLeft: 12, width: 30, height: 25)
+        
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+               
         self.view.addSubview(btnPrev)
         btnPrev.heightAnchor.constraint(equalToConstant: 50).isActive=true
         btnPrev.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive=true
@@ -199,6 +207,26 @@ class CvSurveyViewController: UIViewController, UICollectionViewDelegate, UIColl
         lbl.translatesAutoresizingMaskIntoConstraints=false
         return lbl
     }()
+    
+    private let BackButton: UIButton = {
+        let button = UIButton()
+        // button.setTitle("Back", for: .normal)
+        button.setBackgroundImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp"), for: .normal)
+        button.addTarget(self, action: #selector(showUpdateController), for: UIControl.Event.touchUpInside)
+        
+        return button
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Survey"
+        //label.font = UIFont(name: "Avenir-Light", size: 30)
+        label.font = UIFont(name:"HelveticaNeue-Bold", size: 27)
+        label.textColor = UIColor.black
+        
+        return label
+    }()
+    
 }
 
 extension CvSurveyViewController: SurveyCollectionViewCellDelegate {
@@ -222,7 +250,14 @@ extension CvSurveyViewController: SurveyCollectionViewCellDelegate {
         print(index ?? "index not found")
         return index
     }
-    // MARK: - Navigation
+    
+    @objc func showUpdateController() {
+        let back = UpdateViewController()
+        back.modalPresentationStyle = .fullScreen
+        present(back, animated: true, completion: {
+            // Back to update
+        })
+    }
     
     
     
