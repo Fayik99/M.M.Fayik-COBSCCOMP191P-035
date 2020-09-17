@@ -501,7 +501,7 @@ extension HomeDashBoardViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? UserAnnotation {
             let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            view.image = #imageLiteral(resourceName: "IndexNo")
+            view.image = #imageLiteral(resourceName: "Infected man")
             return view
         }
 
