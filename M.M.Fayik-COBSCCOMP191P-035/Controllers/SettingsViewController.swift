@@ -45,45 +45,6 @@ class SettingsViewController: UIViewController {
         return button
         
     }()
-//
-//    private let ProfileButton: UIButton = {
-//
-//        let button = UIButton()
-//        button.setTitle("Profile", for: .normal)
-//        button.backgroundColor = UIColor.white
-//        button.setTitleColor(.black, for: .normal)
-//        button.contentHorizontalAlignment = .left
-//        button.addTarget(self, action: #selector(showProfile), for: UIControl.Event.touchUpInside)
-//
-//        return button
-//
-//    }()
-//
-//    private let AboutButton: UIButton = {
-//
-//        let button = UIButton()
-//        button.setTitle("Contact Us / About Us", for: .normal)
-//        button.backgroundColor = UIColor.white
-//        button.setTitleColor(.black, for: .normal)
-//        button.contentHorizontalAlignment = .left
-//        button.addTarget(self, action: #selector(showContactUs), for: UIControl.Event.touchUpInside)
-//
-//        return button
-//
-//    }()
-//
-//    private let ShareFButton: UIButton = {
-//
-//        let button = UIButton()
-//        button.setTitle("Share with friend", for: .normal)
-//        button.backgroundColor = UIColor.white
-//        button.setTitleColor(.black, for: .normal)
-//        button.contentHorizontalAlignment = .left
-//        //  button.addTarget(self, action: #selector(signOut), for: UIControl.Event.touchUpInside)
-//
-//        return button
-//
-//    }()
     
     private let baseProfile: UIButton = {
           let tile = UIButton()

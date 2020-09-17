@@ -170,23 +170,6 @@ class LoginViewController: UIViewController {
            // self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
             
-                       
-//            let keyWindow = UIApplication.shared.connectedScenes
-//                .filter({$0.activationState == .foregroundActive})
-//                .map({$0 as? UIWindowScene})
-//                .compactMap({$0})
-//                .first?.windows
-//                .filter({$0.isKeyWindow}).first
-
-
-//            guard let controller = keyWindow?.rootViewController as? HomeViewController else { return }
-//          controller.configure()
-            
-//            self.perform(#selector(self.tabBar), with: nil, afterDelay: 0.01)
-//            self.perform(#selector(self.showHomeController), with: nil, afterDelay: 0.02)
-            
-             //self.dismiss(animated: true, completion: nil)
-            
         }
     }
     // MARK: Functions
@@ -194,22 +177,5 @@ class LoginViewController: UIViewController {
         
         let signUp = SignUpViewController()
         navigationController?.pushViewController(signUp, animated: true)
-        
-    // MARK: Navigate functions
-    }
-//    @objc func showHomeController() {
-//        let home = HomeViewController()
-//        home.modalPresentationStyle = .fullScreen
-//        present(home, animated: true, completion: {
-//            home.configure()
-//        })
-//    }
-//    @objc func tabBar() {
-//       let tab = TabBarViewController()
-//        tab.modalPresentationStyle = .currentContext
-//           present(tab, animated: true, completion: {
-//               tab.tab()
-//           })
-//       }
+   }
 }
-

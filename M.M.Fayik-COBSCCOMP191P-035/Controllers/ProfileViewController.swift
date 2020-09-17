@@ -198,13 +198,13 @@ class ProfileViewController: UIViewController{
         nameLabel.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40)
         
         view.addSubview(profileImageView)
-        profileImageView.anchor(top: nameLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 25, paddingLeft: 150, paddingRight: 150, height: 90)
+        profileImageView.anchor(top: nameLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 25, paddingLeft: 135, paddingRight: 135, height: 105)
         
         view.addSubview(updatePic)
-        updatePic.anchor(top: profileImageView.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 170, paddingRight: 170)
+        updatePic.anchor(top: profileImageView.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 150, paddingRight: 150)
         
         view.addSubview(ActiveLabel)
-        ActiveLabel.anchor(top: updatePic.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 90, paddingRight: 90)
+        ActiveLabel.anchor(top: updatePic.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 75, paddingRight: 75)
         
         view.addSubview(addressLabel)
         addressLabel.anchor(top: ActiveLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 90, paddingRight: 90)

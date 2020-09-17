@@ -58,9 +58,9 @@ class SurveyResultViewController: UIViewController {
         
         Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
             
-            let ac = UIAlertController(title: "Survey", message: "Successfully submitted", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(ac, animated: true)
+//            let ac = UIAlertController(title: "Survey", message: "Successfully submitted", preferredStyle: .alert)
+//            ac.addAction(UIAlertAction(title: "OK", style: .default))
+//            self.present(ac, animated: true)
         }
             let submit = UpdateViewController()
             submit.modalPresentationStyle = .fullScreen

@@ -72,33 +72,23 @@ class SafeActionsViewController:UIViewController, UICollectionViewDelegate, UICo
     //   setQuestionNumber()
     }
     
-//    func setQuestionNumber() {
-//        let x = myCollectionView.contentOffset.x
-//        let w = myCollectionView.bounds.size.width
-//        let currentPage = Int(ceil(x/w))
-//        if currentPage < questionsArray.count {
-//          //  lblQueNumber.text = "Question: \(currentPage+1) / \(questionsArray.count)"
-//          //  currentQuestionNumber = currentPage + 1
-//        }
+//    @objc func navToHome(){
+//        let vc = TabBarViewController()
+//        vc.modalPresentationStyle = .fullScreen
+//        present(vc, animated: true, completion: {
+//        })
+//
 //    }
-    
-    @objc func navToHome(){
-        let vc = TabBarViewController()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: {
-        })
-        
-    }
-    
-    @objc func popAlert(){
-        let alert = UIAlertController(title: "Safe Actions", message: "No more actions, please go back to Home", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in  self.navToHome()}))
-        self.present(alert, animated: true)
-    }
+//
+//    @objc func popAlert(){
+//        let alert = UIAlertController(title: "Safe Actions", message: "No more actions, please go back to Home", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {action in  self.navToHome()}))
+//        self.present(alert, animated: true)
+//    }
     
     @objc func btnPrevNextAction(sender: UIButton) {
         if sender == btnNext && currentQuestionNumber == questionsArray.count {
-          popAlert()
+          //popAlert()
             return
         }
         

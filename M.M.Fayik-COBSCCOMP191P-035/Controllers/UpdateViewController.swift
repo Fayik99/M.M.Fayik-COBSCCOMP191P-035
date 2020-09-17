@@ -57,17 +57,6 @@ class UpdateViewController: UIViewController {
         return button
     }()
     
-    // New Survey
-//    private let StartSurveyButton: AuthUIButton = {
-//        let button = AuthUIButton(type: .system)
-//        button.setTitle("Go to Survey", for: .normal)
-//        button.backgroundColor = UIColor.black
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-//        button.setTitleColor(UIColor(white: 1, alpha: 1), for: .normal)
-//        button.addTarget(self, action: #selector(showSurveyController), for: UIControl.Event.touchUpInside)
-//
-//        return button
-//    }()
     private let newSurveyMain: UIButton = {
         let tileBtn = UIButton()
         tileBtn.backgroundColor = .white
@@ -216,7 +205,7 @@ class UpdateViewController: UIViewController {
         tempUpdateUIView.anchor(top: newSurveyMain.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 16, paddingRight: 16, height: 220)
         
        view.addSubview(LastUpdateLabel)
-        LastUpdateLabel.anchor(top: tempUpdateUIView.topAnchor, left: tempUpdateUIView.leftAnchor, right: tempUpdateUIView.rightAnchor, paddingTop: 10, paddingLeft: 50, paddingRight: 50, height: 70)
+        LastUpdateLabel.anchor(top: tempUpdateUIView.topAnchor, left: tempUpdateUIView.leftAnchor, right: tempUpdateUIView.rightAnchor, paddingTop: 10, paddingLeft: 45, paddingRight: 45, height: 70)
 
         let stack = UIStackView(arrangedSubviews: [updateTempContainer, SubmitTempButton])
         view.addSubview(stack)

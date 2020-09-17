@@ -30,18 +30,6 @@ class HomeViewController: UIViewController {
     private final let locationInputViewHeight: CGFloat = 200
     private var route: MKRoute?
     
-//    private var users: Users? {
-//        didSet {
-//            locationInputView.users = users
-//            if users?.accountType == .Student || users?.accountType == .Staff  {
-//                configure()
-//                fetchUsers()
-//                configureLocationInputActivationView()
-//            } else {
-//                print("Invalid acoountType")
-//            }
-//        }
-//    }
     
     private let backButton: UIButton = {
           let button = UIButton(type: .system)
@@ -56,36 +44,14 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
     
         configure()
-        fetchUsers()
         configureLocationInputActivationView()
         AccessLocationServices()
         
        view.backgroundColor = .white
     }
-
-//    func fetchUserData() {
-//        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-//
-//        Services.shared.fetchUserData(uid: currentUid) { (users) in
-//            self.users = users
-//        }
-//    }
     
     func fetchUsers() {
-        
-//        Database.database().reference().child("users").observe(.value, with: { (snapshot) in
-//
-//            for child in snapshot.children.allObjects as! [DataSnapshot] {
-//                let dict = child.value as? [String : AnyObject] ?? [:]
-//                let sur = dict["survey"] as? Int ?? 0
-//
-//                if sur >= 3 {
-//
-//                    infectedUsers.append(contentsOf: child.value(forKey: [dict]))
-//                }
-//            }
-//        })
-                
+           
         guard let location = locationManager?.location else { return }
         Services.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
@@ -99,12 +65,17 @@ class HomeViewController: UIViewController {
                 return self.mapView.annotations.contains { (annotation) -> Bool in
                     guard let userAnno = annotation as? UserAnnotation else { return false }
                     
-                     if userAnno.uid == user.uid {
+                    if userAnno.uid == user.uid {
                         
                         if temp > 37 && survey >= 3
                         {
-                        userAnno.updateAnnotationPosition(withCoordinate: coordinate)
-                        return true
+                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                            
+                            let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "Got it!", style: .default))
+                            self.present(ac, animated: true)
+                            
+                            return true
                         }
                     }
                     return false
@@ -114,15 +85,18 @@ class HomeViewController: UIViewController {
             if !userIsVisible {
                 
                 if temp > 37 && survey >= 3
-              {
-                self.mapView.addAnnotation(annotation)
-              }
+                {
+                    self.mapView.addAnnotation(annotation)
+                    
+                    let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Got it!", style: .default))
+                    self.present(ac, animated: true)
+                }
             }
         }
     }
     func configure() {
         configureUi()
-      //fetchUserData()
         fetchUsers()
     
     }

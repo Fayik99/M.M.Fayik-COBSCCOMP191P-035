@@ -204,6 +204,9 @@ class HomeDashBoardViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AccessLocationServices()
+        fetchUsers()
+        
         let stayHomeImageContainerView = UIView()
         stayHomeImageContainerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stayHomeImageContainerView)
@@ -231,9 +234,6 @@ class HomeDashBoardViewController: UIViewController{
         let SeeMoreContainerView = UIView()
         SeeMoreContainerView.translatesAutoresizingMaskIntoConstraints=false
         view.addSubview(SeeMoreContainerView)
-        
-        fetchUsers()
-        AccessLocationServices()
         
         stayHomeImageContainerView.backgroundColor = .white
         stayHomeTextContainerView.backgroundColor = .white
@@ -295,7 +295,7 @@ class HomeDashBoardViewController: UIViewController{
 
         stayHomeTextContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         stayHomeTextContainerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 18).isActive = true
-        stayHomeTextContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.6).isActive = true
+        stayHomeTextContainerView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.61).isActive = true
         stayHomeTextContainerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.2).isActive = true
 
         stayHomeTextView.centerYAnchor.constraint(equalTo: stayhomeImageView.centerYAnchor, constant: -15).isActive = true
@@ -439,27 +439,47 @@ class HomeDashBoardViewController: UIViewController{
     }
 
     func fetchUsers() {
+        
         guard let location = locationManager?.location else { return }
         Services.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
             let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
-
+            
+            let temp = Double(user.temperature)!
+            let survey = user.surveyWeight
+            
             var userIsVisible: Bool {
-
+                
                 return self.mapView.annotations.contains { (annotation) -> Bool in
                     guard let userAnno = annotation as? UserAnnotation else { return false }
-
+                    
                     if userAnno.uid == user.uid {
-                        userAnno.updateAnnotationPosition(withCoordinate: coordinate)
-                        return true
+                        
+                        if temp > 37 && survey >= 3
+                        {
+                            userAnno.updateAnnotationPosition(withCoordinate: coordinate)
+                            
+                            let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "Got it!", style: .default))
+                            self.present(ac, animated: true)
+                            
+                            return true
+                        }
                     }
-
                     return false
                 }
             }
-
+            
             if !userIsVisible {
-                self.mapView.addAnnotation(annotation)
+                
+                if temp > 37 && survey >= 3
+                {
+                    self.mapView.addAnnotation(annotation)
+                    let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Got it!", style: .default))
+                    self.present(ac, animated: true)
+                                              
+                }
             }
         }
     }
