@@ -20,16 +20,16 @@ struct Users {
     var accountType: AccountType!
     var location: CLLocation?
     let uid: String
-  //  let temp: Int
-    let survey: Int
+    let temperature: String
+    let surveyWeight: Int
     
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
         self.fullName = dictionary["fullName"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
         self.address = dictionary["address"] as? String ?? ""
-       // self.temp = dictionary["bodyTemperature"] as? Int ?? 0
-        self.survey = dictionary["surveyWeight"] as? Int ?? 0
+        self.temperature = dictionary["bodyTemperature"] as? String ?? ""
+        self.surveyWeight = dictionary["surveyWeight"] as? Int ?? 0
         
         if let index = dictionary["accountType"] as? Int {
             self.accountType = AccountType(rawValue: index)

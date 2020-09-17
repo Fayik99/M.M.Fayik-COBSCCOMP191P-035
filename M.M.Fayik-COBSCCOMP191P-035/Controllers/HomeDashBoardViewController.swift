@@ -45,7 +45,7 @@ class HomeDashBoardViewController: UIViewController{
     let btnSafeAction: UIButton = {
         
         let button = UIButton()
-        button.setTitle("Safe Actions >", for: .normal)
+        button.setTitle("Safe Actions ->", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.translatesAutoresizingMaskIntoConstraints = false

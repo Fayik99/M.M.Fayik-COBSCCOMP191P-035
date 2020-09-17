@@ -91,22 +91,32 @@ class HomeViewController: UIViewController {
             guard let coordinate = user.location?.coordinate else { return }
             let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
             
+            let temp = Double(user.temperature)!
+            let survey = user.surveyWeight
+            
             var userIsVisible: Bool {
                 
                 return self.mapView.annotations.contains { (annotation) -> Bool in
                     guard let userAnno = annotation as? UserAnnotation else { return false }
                     
-                    if userAnno.uid == user.uid {
+                     if userAnno.uid == user.uid {
+                        
+                        if temp > 37 && survey >= 3
+                        {
                         userAnno.updateAnnotationPosition(withCoordinate: coordinate)
                         return true
+                        }
                     }
-                    
                     return false
                 }
             }
             
             if !userIsVisible {
+                
+                if temp > 37 && survey >= 3
+              {
                 self.mapView.addAnnotation(annotation)
+              }
             }
         }
     }
