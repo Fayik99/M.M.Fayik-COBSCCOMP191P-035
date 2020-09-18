@@ -43,7 +43,6 @@ class CreateNotificationsViewController: UIViewController {
     private let createNotificationTF: UITextView = {
         
         let text = UITextView()
-       // text.borderStyle = .roundedRect
         text.font = UIFont(name: "Avenir-medium", size: 18)
         text.textColor = .black
         text.keyboardAppearance = .dark
@@ -51,7 +50,6 @@ class CreateNotificationsViewController: UIViewController {
         text.layer.borderColor = UIColor.gray.cgColor
         text.layer.borderWidth = 2
         text.layer.cornerRadius = 5
-        //text.placeholder = "Type here..."
         
         return text
     }()

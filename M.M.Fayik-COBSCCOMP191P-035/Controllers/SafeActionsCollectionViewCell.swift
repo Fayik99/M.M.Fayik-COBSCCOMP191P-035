@@ -16,7 +16,6 @@ class SafeActionsCollectionViewCell: UICollectionViewCell {
     
     var btn1: UIButton!
     var btn2: UIButton!
-    // var btnsArray = [UIButton]()
     
     weak var delegate: SafeActionsCollectionViewCellDelegate?
     
@@ -40,26 +39,15 @@ class SafeActionsCollectionViewCell: UICollectionViewCell {
 
     func setupViews() {
         addSubview(imgView)
-        //        imgView.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive=true
-        //        imgView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive=true
-        //        imgView.widthAnchor.constraint(equalToConstant: 150).isActive=true
-        //        imgView.heightAnchor.constraint(equalTo: imgView.widthAnchor).isActive=true
+    
         imgView.anchor(top: self.safeAreaLayoutGuide.topAnchor,paddingTop: 80, width: 150, height: 150)
         imgView.centerX(inView: self)
         
         addSubview(lblQue)
-        //        lblQue.topAnchor.constraint(equalTo: imgView.bottomAnchor).isActive=true
-        //        lblQue.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12).isActive=true
-        //        lblQue.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive=true
-        //        lblQue.heightAnchor.constraint(equalToConstant: 150).isActive=true
-        
+    
         lblQue.anchor(top: imgView.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12,height: 50)
         
         addSubview(lblDes)
-        //        lblDes.topAnchor.constraint(equalTo: lblQue.bottomAnchor,constant:5).isActive=true
-        //        lblDes.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12).isActive=true
-        //        lblDes.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive=true
-        // lblDes.heightAnchor.constraint(equalToConstant: 150).isActive=true
         lblDes.anchor(top: lblQue.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor, paddingTop: 20, paddingLeft: 12,  paddingRight: 12,height: 150)
         
     }

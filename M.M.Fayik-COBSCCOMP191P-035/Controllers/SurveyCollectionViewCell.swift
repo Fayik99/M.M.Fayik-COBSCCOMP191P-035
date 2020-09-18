@@ -25,7 +25,7 @@ class SurveyCollectionViewCell: UICollectionViewCell {
     var question: Question? {
         didSet {
             guard let unwrappedQue = question else { return }
-            //   imgView.image = UIImage(named: unwrappedQue.imgName)
+        
             lblQue.text = unwrappedQue.questionText
             btn1.setTitle(unwrappedQue.options[0], for: .normal)
             btn2.setTitle(unwrappedQue.options[1], for: .normal)
@@ -56,23 +56,12 @@ class SurveyCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         btn1.backgroundColor=UIColor.white
         btn2.backgroundColor=UIColor.white
-        //        btn3.backgroundColor=UIColor.white
-        //        btn4.backgroundColor=UIColor.white
     }
     
     func setupViews() {
-        //        addSubview(imgView)
-        //        imgView.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive=true
-        //        imgView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive=true
-        //        imgView.widthAnchor.constraint(equalToConstant: 150).isActive=true
-        //        imgView.heightAnchor.constraint(equalTo: imgView.widthAnchor).isActive=true
-        //
+      
         addSubview(lblQue)
-        //  lblQue.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive=true
-        //        lblQue.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12).isActive=true
-        //        lblQue.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive=true
-        //        lblQue.heightAnchor.constraint(equalToConstant: 150).isActive=true
-        
+       
         lblQue.anchor(top:self.safeAreaLayoutGuide.topAnchor,   paddingTop: 200)
         lblQue.centerX(inView: self)
         
@@ -90,8 +79,7 @@ class SurveyCollectionViewCell: UICollectionViewCell {
         
         btnStack.distribution = .fillEqually
         btnStack.spacing = 15
-//        btnStack.anchor(top: lblQue.bottomAnchor,  paddingTop: 50,height: 50, width: 300)
-//        btnStack.centerX(inView: self)
+        
         btnStack.anchor(top: lblQue.bottomAnchor, paddingTop: 50, width: 300, height: 50)
         btnStack.centerX(inView: self)
     }
@@ -110,14 +98,6 @@ class SurveyCollectionViewCell: UICollectionViewCell {
         btn.translatesAutoresizingMaskIntoConstraints=false
         return btn
     }
-    
-    //    let imgView: UIImageView = {
-    //        let v=UIImageView()
-    //        v.image = #imageLiteral(resourceName: "img2")
-    //        v.contentMode = .scaleAspectFit
-    //        v.translatesAutoresizingMaskIntoConstraints=false
-    //        return v
-    //    }()
     
     let lblQue: UILabel = {
         let lbl=UILabel()

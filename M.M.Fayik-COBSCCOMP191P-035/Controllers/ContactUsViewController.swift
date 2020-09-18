@@ -14,7 +14,6 @@ class ContactUsViewController: UIViewController {
         
         let label = UILabel()
         label.text = "Contact Us / About Us"
-        //label.font = UIFont(name: "Avenir-Light", size: 25)
         label.font = UIFont(name:"HelveticaNeue-Bold", size: 27)
         label.textColor = UIColor.black
         
@@ -38,8 +37,6 @@ class ContactUsViewController: UIViewController {
         label.textColor = UIColor.black
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 6
-//        label.layer.borderColor = UIColor.darkGray.cgColor
-//        label.layer.borderWidth = 3.0
         
         return label
     }()
@@ -48,7 +45,6 @@ class ContactUsViewController: UIViewController {
         
         let label = UILabel()
         label.text = "All rights reserved 2020 Fayik Inc"
-        //label.font = UIFont(name: "Avenir-Light", size: 13)
         label.font = UIFont(name:"HelveticaNeue-Bold", size: 14)
         label.textColor = UIColor.black
         label.textAlignment = .center

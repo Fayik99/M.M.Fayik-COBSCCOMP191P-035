@@ -17,9 +17,6 @@ class ProfileViewController: UIViewController{
 
     var selectedImage: UIImage?
     
-//    let countries = ["Sri Lanka","India","Pakistan","America","England","Japan"]
-//    var pickerView = UIPickerView()
-    
     private let titleLabel: UILabel = {
         
         let label = UILabel()
@@ -226,9 +223,6 @@ class ProfileViewController: UIViewController{
         view.addSubview(blankView)
         blankView.anchor(top: stack.bottomAnchor, left: view.leftAnchor, bottom: updateButton.topAnchor, right: view.rightAnchor)
         
-//        pickerView.delegate = self
-//        pickerView.dataSource = self
-//        countryDropDown.inputView = pickerView
         
         let userID = Auth.auth().currentUser?.uid
         Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in

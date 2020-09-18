@@ -21,7 +21,6 @@ class AllNewsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let label = UILabel()
         label.text = "All News"
-        //label.font = UIFont(name: "Avenir-Light", size: 30)
         label.font = UIFont(name:"HelveticaNeue-Bold", size: 27)
         label.textColor = UIColor.black
         
@@ -30,7 +29,6 @@ class AllNewsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private let BackButton: UIButton = {
            let button = UIButton()
-        // button.setTitle("Back", for: .normal)
            button.setBackgroundImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp"), for: .normal)
            button.addTarget(self, action: #selector(showUpdateController), for: UIControl.Event.touchUpInside)
 

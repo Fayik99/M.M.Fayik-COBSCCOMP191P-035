@@ -169,7 +169,6 @@ class LoginViewController: UIViewController {
             }
             
             print("Success: Login Successful")
-           // self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
             
         }
