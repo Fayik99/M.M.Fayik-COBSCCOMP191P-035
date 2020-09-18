@@ -18,15 +18,15 @@ class LoginViewController: UIViewController {
         
         let label = UILabel()
         label.text = "NIBM COVID19"
-        label.font = UIFont(name: "Avenir-Light", size: 32)
-        label.textColor = UIColor(white: 1, alpha: 0.8)
+        label.font = UIFont(name: "Avenir-medium", size: 32)
+        label.textColor = UIColor(white: 0, alpha: 1.8)
         
         return label
     }()
     
     private lazy var logoImage: UIImageView = {
         
-       let imageView = UIImageView(image: #imageLiteral(resourceName: "nibmcl"))
+       let imageView = UIImageView(image: #imageLiteral(resourceName: "Launch"))
        return imageView
         
     }()
@@ -62,8 +62,10 @@ class LoginViewController: UIViewController {
     
     private let loginButton: AuthUIButton = {
         let button = AuthUIButton(type: .system)
-        button.setTitle("Log In", for: .normal)
+        button.setTitle("L O G I N", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .lightGray
         button.addTarget(self, action: #selector(handleSignIn), for: .touchUpInside)
         
         return button
@@ -74,7 +76,7 @@ class LoginViewController: UIViewController {
         
         let button = UIButton(type: .system)
         
-        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black])
         
         attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.mainBlueTint]))
     
@@ -91,7 +93,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         configureNavigationBar()
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = .rgb(red: 13, green: 93, blue: 95)
         
         view.addSubview(apptitleLabel)
         apptitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +101,7 @@ class LoginViewController: UIViewController {
         apptitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         
         view.addSubview(logoImage)
-        logoImage.anchor(top: apptitleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 110, paddingRight: 110, height: 140)
+        logoImage.anchor(top: apptitleLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 120, paddingRight: 120, height: 158)
         
         let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
         stack.axis = .vertical

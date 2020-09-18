@@ -20,8 +20,8 @@ class SignUpViewController: UIViewController {
         
         let label = UILabel()
         label.text = "NIBM COVID19"
-        label.font = UIFont(name: "Avenir-Light", size: 32)
-        label.textColor = UIColor(white: 1, alpha: 0.8)
+        label.font = UIFont(name: "Avenir-medium", size: 32)
+        label.textColor = UIColor(white: 0, alpha: 1.8)
         
         return label
     }()
@@ -84,7 +84,7 @@ class SignUpViewController: UIViewController {
     
     private let accountTypeSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Student", "Staff"])
-        sc.backgroundColor = .backgroundColor
+        sc.backgroundColor = .rgb(red: 27, green: 101, blue: 102)
         sc.tintColor = UIColor(white: 1, alpha: 0.87)
         sc.selectedSegmentIndex = 0
         
@@ -93,16 +93,18 @@ class SignUpViewController: UIViewController {
     
     private let signUpButton: AuthUIButton = {
         let button = AuthUIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
+        button.setTitle("S I G N U P", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .lightGray
         
         return button
     }()
     
     let alreadyHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black])
         
         attributedTitle.append(NSAttributedString(string: "Log In", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.mainBlueTint]))
         
@@ -129,7 +131,7 @@ class SignUpViewController: UIViewController {
     }
     // MARK: - Functions
     func UI() {
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = .rgb(red: 13, green: 93, blue: 95)
         
         view.addSubview(apptitleLabel)
         apptitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor)

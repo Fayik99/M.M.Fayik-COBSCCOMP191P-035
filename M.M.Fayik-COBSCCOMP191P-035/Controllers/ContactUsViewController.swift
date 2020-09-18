@@ -33,7 +33,7 @@ class ContactUsViewController: UIViewController {
     private let AboutLabel: UILabel = {
         
         let label = UILabel()
-        label.text = "This is an iOS app designed and developed by Fayik Muzammil. This app will help everyone to identify nearby covid 19 patients and avoid going to those places. App will notify you by an alert. Also we provided safe actions you need to follow and keep safe everyone from this pandemic."
+        label.text = "This is an iOS app designed and developed by Fayik Muzammil. This app will help everyone to identify nearby covid 19 patients and avoid going to those places. App will notify you by an alert. Also we provided safe actions that you need to follow and keep safe everyone from this pandemic."
         label.font = UIFont(name: "Avenir-medium", size: 17)
         label.textColor = UIColor.black
         label.lineBreakMode = .byWordWrapping
