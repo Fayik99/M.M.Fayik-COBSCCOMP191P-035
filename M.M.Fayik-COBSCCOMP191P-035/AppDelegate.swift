@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
           window = UIWindow()
           window?.makeKeyAndVisible()
-       // window?.rootViewController = MainTabBarViewController()
           window?.rootViewController = TabBarViewController()
+        //window?.rootViewController = UINavigationController(rootViewController: TabBarViewController())
         
           return true
       }

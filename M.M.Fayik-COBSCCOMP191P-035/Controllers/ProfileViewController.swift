@@ -342,6 +342,8 @@ class ProfileViewController: UIViewController{
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(ac, animated: true)
             
+            self.LoadUI()
+            
         }
     }
     

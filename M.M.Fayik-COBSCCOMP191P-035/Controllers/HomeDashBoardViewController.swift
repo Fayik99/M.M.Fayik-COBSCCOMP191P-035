@@ -143,7 +143,7 @@ class HomeDashBoardViewController: UIViewController{
     
     let infectedTextview: UITextView = {
         let textView = UITextView()
-        let attributedText = NSMutableAttributedString(string:  "3", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40)])
+        let attributedText = NSMutableAttributedString(string:  "3", attributes: [NSAttributedString.Key.font: UIFont(name:"HelveticaNeue-Bold", size: 40) as Any])
         textView.attributedText = attributedText
         textView.textAlignment = .center
         textView.isEditable = false
@@ -155,7 +155,7 @@ class HomeDashBoardViewController: UIViewController{
     
     let deathsTextview: UITextView = {
         let textView = UITextView()
-        let attributedText = NSMutableAttributedString(string:  "1", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40)])
+        let attributedText = NSMutableAttributedString(string:  "0", attributes: [NSAttributedString.Key.font: UIFont(name:"HelveticaNeue-Bold", size: 40) as Any])
         textView.attributedText = attributedText
         textView.textAlignment = .center
         textView.isEditable = false
@@ -167,7 +167,7 @@ class HomeDashBoardViewController: UIViewController{
     
     let recoveredTextview: UITextView = {
         let textView = UITextView()
-        let attributedText = NSMutableAttributedString(string:  "10", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40)])
+        let attributedText = NSMutableAttributedString(string:  "12", attributes: [NSAttributedString.Key.font: UIFont(name:"HelveticaNeue-Bold", size: 40) as Any])
         textView.attributedText = attributedText
         textView.textAlignment = .center
         textView.isEditable = false

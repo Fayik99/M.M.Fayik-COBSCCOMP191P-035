@@ -11,12 +11,11 @@ import MapKit
 
 class TabBarViewController: UITabBarController {
     
-  //  let tabBar = UITabBarController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       tab()
+        
+        tab()
     }
     func tab() {
         
@@ -32,8 +31,6 @@ class TabBarViewController: UITabBarController {
         settingsViewController.tabBarItem.image = #imageLiteral(resourceName: "Settings")
         settingsViewController.tabBarItem.title = "SETTINGS"
         
-//        tabBar.viewControllers = [homeViewController,updateViewController,settingsViewController]
-//        self.view.addSubview(tabBar.view)
         viewControllers = [homeViewController,updateViewController,settingsViewController]
         
     }

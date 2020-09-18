@@ -76,19 +76,10 @@ class SurveyCollectionViewCell: UICollectionViewCell {
         lblQue.anchor(top:self.safeAreaLayoutGuide.topAnchor,   paddingTop: 200)
         lblQue.centerX(inView: self)
         
-        //        let btnWidth: CGFloat = 150
-        //        let btnHeight: CGFloat = 50
         btn1 = getButton(tag: 0)
-        //  addSubview(btn1)
-        //        NSLayoutConstraint.activate([btn1.topAnchor.constraint(equalTo: lblQue.bottomAnchor, constant: 20), btn1.rightAnchor.constraint(equalTo: self.centerXAnchor, constant: -10), btn1.widthAnchor.constraint(equalToConstant: btnWidth), btn1.heightAnchor.constraint(equalToConstant: btnHeight)])
-        
-        //  btn1.anchor(top: lblQue.bottomAnchor, left: self.leftAnchor, paddingTop: 20, paddingLeft: 20,   height: 50, width: 150)
         btn1.addTarget(self, action: #selector(btnOptionAction), for: .touchUpInside)
         
         btn2 = getButton(tag: 1)
-        //  addSubview(btn2)
-        //        NSLayoutConstraint.activate([btn2.topAnchor.constraint(equalTo: btn1.topAnchor), btn2.leftAnchor.constraint(equalTo: self.centerXAnchor, constant: 10), btn2.widthAnchor.constraint(equalToConstant: btnWidth), btn2.heightAnchor.constraint(equalToConstant: btnHeight)])
-        //  btn2.anchor(top: lblQue.bottomAnchor, right: self.rightAnchor, paddingTop: 20,   paddingRight: -20, height: 50, width: 150)
         btn2.addTarget(self, action: #selector(btnOptionAction), for: .touchUpInside)
         
         
@@ -103,20 +94,6 @@ class SurveyCollectionViewCell: UICollectionViewCell {
 //        btnStack.centerX(inView: self)
         btnStack.anchor(top: lblQue.bottomAnchor, paddingTop: 50, width: 300, height: 50)
         btnStack.centerX(inView: self)
-        
-        // btnStack.anchor(left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingLeft: 20, paddingBottom: 10, paddingRight: -20)
-//        btnStack.anchor(top: lblQue.bottomAnchor,  paddingTop: 50,height: 50, width: 300)
-//        btnStack.centerX(inView: self)
-//
-        //        btn3 = getButton(tag: 2)
-        //        addSubview(btn3)
-        //        NSLayoutConstraint.activate([btn3.topAnchor.constraint(equalTo: btn1.bottomAnchor, constant: 20), btn3.rightAnchor.constraint(equalTo: self.centerXAnchor, constant: -10), btn3.widthAnchor.constraint(equalToConstant: btnWidth), btn3.heightAnchor.constraint(equalToConstant: btnHeight)])
-        //        btn3.addTarget(self, action: #selector(btnOptionAction), for: .touchUpInside)
-        
-        //        btn4 = getButton(tag: 3)
-        //        addSubview(btn4)
-        //        NSLayoutConstraint.activate([btn4.topAnchor.constraint(equalTo: btn3.topAnchor), btn4.leftAnchor.constraint(equalTo: self.centerXAnchor, constant: 10), btn4.widthAnchor.constraint(equalToConstant: btnWidth), btn4.heightAnchor.constraint(equalToConstant: btnHeight)])
-        //        btn4.addTarget(self, action: #selector(btnOptionAction), for: .touchUpInside)
     }
     
     func getButton(tag: Int) -> UIButton {

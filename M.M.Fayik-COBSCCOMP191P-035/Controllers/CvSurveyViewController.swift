@@ -60,11 +60,6 @@ class CvSurveyViewController: UIViewController, UICollectionViewDelegate, UIColl
         questionsArray = [que1, que2, que3, que4]
         
         setupViews()
-        
-        
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     
