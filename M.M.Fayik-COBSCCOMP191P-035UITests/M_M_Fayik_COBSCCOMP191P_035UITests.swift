@@ -31,6 +31,34 @@ class M_M_Fayik_COBSCCOMP191P_035UITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    func testValidLoginSuccess() {
+        
+        let email = "A@gmail.com"
+        let password = "iphone123"
+
+        let app = XCUIApplication()
+        app.launch()
+        
+        app.alerts["Covid 19 Warning"].scrollViews.otherElements.buttons["Got it!"].tap()
+        
+        app.tabBars.buttons["UPDATE"].tap()
+        
+        let txtEmail = app.textFields["Email"]
+        XCTAssertTrue(txtEmail.exists)
+        txtEmail.tap()
+        txtEmail.typeText(email)
+        
+        let passwordSecureTextField = app.secureTextFields["Password"]
+        XCTAssertTrue(passwordSecureTextField.exists)
+        passwordSecureTextField.tap()
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText(password)
+        
+        let loginButton = app.buttons["L O G I N"]
+        loginButton.tap()
+        
+    }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
