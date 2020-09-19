@@ -129,6 +129,7 @@ class SignUpViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
     // MARK: - Functions
     func UI() {
         view.backgroundColor = .rgb(red: 13, green: 93, blue: 95)

@@ -34,7 +34,6 @@ class SafeActionsCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupViews()
-        // btnsArray = [btn1, btn2]
     }
 
     func setupViews() {

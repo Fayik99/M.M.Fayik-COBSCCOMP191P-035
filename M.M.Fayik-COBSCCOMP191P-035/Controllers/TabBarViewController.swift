@@ -15,7 +15,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tab()
+         tab()
     }
     func tab() {
         
