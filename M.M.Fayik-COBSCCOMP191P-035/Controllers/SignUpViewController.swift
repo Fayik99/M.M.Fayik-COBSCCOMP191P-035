@@ -161,8 +161,11 @@ class SignUpViewController: UIViewController {
         let accountType = accountTypeSegmentedControl.selectedSegmentIndex
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            if let error = error {
-                print("ERROR: Registration error \(error)")
+            if (error != nil) {
+                let ac = UIAlertController(title: "Registration failed", message: "Please fill missing fields", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(ac, animated: true)
+                
                 return
             }
             

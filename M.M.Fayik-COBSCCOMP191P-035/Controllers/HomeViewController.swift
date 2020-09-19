@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
             guard let coordinate = user.location?.coordinate else { return }
             let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
             
-            let temp = Double(user.temperature)!
+            let temp = Double(user.temperature) ?? 0
             let survey = user.surveyWeight
             
             var userIsVisible: Bool {
