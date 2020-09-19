@@ -150,6 +150,7 @@ class UpdateViewController: UIViewController {
         super.viewWillAppear(animated)
         
         view.backgroundColor = UIColor.systemGray6
+        tabBarController?.tabBar.isHidden = true
         checkIsUserLoggedIn()
     }
     
