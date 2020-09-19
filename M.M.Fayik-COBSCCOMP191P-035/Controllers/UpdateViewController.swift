@@ -143,7 +143,7 @@ class UpdateViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
          checkIsUserLoggedIn()
-      // tabBarController?.tabBar.isHidden = true
+         tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
