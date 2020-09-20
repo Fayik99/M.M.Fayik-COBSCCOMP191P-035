@@ -28,19 +28,19 @@ class SurveyResultViewController: UIViewController {
         guard let sc = score, let tc = totalScore else { return }
         let s = sc * 100 / tc
         if s < 10 {
-            rating = "You are not infected"
+            rating = "Survey Completed"
             color = UIColor.darkGray
         }  else if s < 40 {
-            rating = "You are not infected"
+            rating = "Survey Completed"
             color = UIColor.blue
         } else if s < 60 {
-            rating = "You are not infected"
+            rating = "Survey Completed"
             color = UIColor.yellow
         } else if s < 80 {
-            rating = "You are infected"
+            rating = "Survey Completed"
             color = UIColor.red
         } else if s <= 100 {
-            rating = "You are infected"
+            rating = "Survey Completed"
             color = UIColor.red
         }
         lblRating.text = "\(rating)"
