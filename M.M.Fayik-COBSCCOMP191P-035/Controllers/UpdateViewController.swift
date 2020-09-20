@@ -253,7 +253,7 @@ class UpdateViewController: UIViewController {
             let account = value?["accountType"] as? Int
             
             if account == 0 {
-                let ac = UIAlertController(title: "Authorization", message: "Only Staff users can create news", preferredStyle: .alert)
+                let ac = UIAlertController(title: "Access", message: "Only Staff users can create news", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(ac, animated: true)
             }
