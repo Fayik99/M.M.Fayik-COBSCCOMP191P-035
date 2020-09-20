@@ -35,8 +35,8 @@ class SurveyResultViewController: UIViewController {
             color = UIColor.blue
         } else if s < 60 {
             rating = "Survey Completed"
-            color = UIColor.yellow
-        } else if s < 80 {
+            color = UIColor.red
+        } else if s < 80 { 
             rating = "Survey Completed"
             color = UIColor.red
         } else if s <= 100 {
