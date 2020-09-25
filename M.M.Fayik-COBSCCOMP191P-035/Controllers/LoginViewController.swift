@@ -133,8 +133,8 @@ class LoginViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if (error != nil) {
-                //print("ERROR: Login Failed \(error.localizedDescription)")
-                let ac = UIAlertController(title: "Login failed", message: "Incorrect email or password", preferredStyle: .alert)
+                
+                let ac = UIAlertController(title: "Login Failed", message: "Incorrect email or password", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(ac, animated: true)
                 
@@ -152,9 +152,13 @@ class LoginViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         if success {
-                            let ac = UIAlertController(title: "Authentication Success", message: "Access granted", preferredStyle: .alert)
-                            ac.addAction(UIAlertAction(title: "OK", style: .default))
-                            self?.present(ac, animated: true)
+//                            let ac = UIAlertController(title: "Authentication Success", message: "Access granted", preferredStyle: .alert)
+//                            ac.addAction(UIAlertAction(title: "OK", style: .default))
+//                            self?.present(ac, animated: true)
+                            
+                            print("Success: Login Successful")
+                            self?.dismiss(animated: true, completion: nil)
+                            
                         } else {
                             let ac = UIAlertController(title: "Authentication failed", message: "You could not be verified; please try again", preferredStyle: .alert)
                             ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -168,8 +172,8 @@ class LoginViewController: UIViewController {
                 self.present(ac, animated: true)
             }
             
-            print("Success: Login Successful")
-            self.dismiss(animated: true, completion: nil)
+//            print("Success: Login Successful")
+//            self.dismiss(animated: true, completion: nil)
             
         }
     }
