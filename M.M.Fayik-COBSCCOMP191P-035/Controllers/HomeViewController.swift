@@ -11,6 +11,7 @@ import Firebase
 import MapKit
 import FirebaseAuth
 import FirebaseDatabase
+import UserNotifications
 
 private let reuseIdentifier = "LocationCell"
 private let annotationIdentifier = "UserAnnotation"
@@ -53,6 +54,8 @@ class HomeViewController: UIViewController {
     func fetchUsers() {
            
         guard let location = locationManager?.location else { return }
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        
         Services.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
             let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
@@ -71,11 +74,15 @@ class HomeViewController: UIViewController {
                         {
                             userAnno.updateAnnotationPosition(withCoordinate: coordinate)
                             
-                            let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
-                            ac.addAction(UIAlertAction(title: "Got it!", style: .default))
-                            self.present(ac, animated: true)
+//                            let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
+//                            ac.addAction(UIAlertAction(title: "Got it!", style: .default))
+//                            self.present(ac, animated: true)
+                            self.warningNotifications()
                             
                             return true
+                        }
+                        else {
+                            self.mapView.removeAnnotation(annotation)
                         }
                     }
                     return false
@@ -84,13 +91,19 @@ class HomeViewController: UIViewController {
             
             if !userIsVisible {
                 
-                if temp > 37 && survey >= 3
-                {
-                    self.mapView.addAnnotation(annotation)
-                    
-                    let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
-                    ac.addAction(UIAlertAction(title: "Got it!", style: .default))
-                    self.present(ac, animated: true)
+                if user.uid != currentUserId {
+                    if temp > 37 && survey >= 3
+                    {
+                        self.mapView.addAnnotation(annotation)
+                        
+                        //                    let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
+                        //                    ac.addAction(UIAlertAction(title: "Got it!", style: .default))
+                        //                    self.present(ac, animated: true)
+                        self.warningNotifications()
+                    }
+                }
+                else {
+                    self.mapView.removeAnnotation(annotation)
                 }
             }
         }
@@ -234,6 +247,26 @@ private extension HomeViewController {
             // Back
         })
     }
+    
+    func warningNotifications() {
+        
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Covid 19 Warning"
+        content.body =  "Covid infected person found within 500 meters"
+        content.sound = .default
+        
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.5, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "Reminder", content: content, trigger: trigger)
+        
+        center.add(request) { (error) in
+            //error
+        }
+    }
 }
 
 // MARK: - MKMapViewDelegate
@@ -349,4 +382,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+}
+
+extension HomeViewController: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+           willPresent notification: UNNotification,
+           withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler(.alert)
+    }
+    
 }

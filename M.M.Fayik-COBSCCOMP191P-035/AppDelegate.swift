@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseCore
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,13 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
       func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
           
-         FirebaseApp.configure()
+        FirebaseApp.configure()
         
-          window = UIWindow()
-          window?.makeKeyAndVisible()
-          window?.rootViewController = TabBarViewController()
-
-          return true
-      }
+        window = UIWindow()
+        window?.makeKeyAndVisible()
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]){
+            (granted, error) in
+        }
+        window?.rootViewController = TabBarViewController()
+        
+        return true
+    }
 }
 

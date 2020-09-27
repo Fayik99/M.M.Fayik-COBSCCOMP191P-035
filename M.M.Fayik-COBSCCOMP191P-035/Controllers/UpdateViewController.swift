@@ -277,6 +277,16 @@ class UpdateViewController: UIViewController {
             "bodyTemperature": TempUpdate,
             ] as [String : Any]
         
+        let date = Date()
+        let formatter = DateFormatter()
+        let formatter2 = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm"
+        formatter2.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        
+        let updateValues = [
+            "updated": formatter2.string(from: date)
+            ] as [String : Any]
+        
         if TempUpdate.isEmpty {
             
             let ac = UIAlertController(title: "Temperature Update", message: "Type your temperature", preferredStyle: .alert)
@@ -290,6 +300,12 @@ class UpdateViewController: UIViewController {
                 let ac = UIAlertController(title: "Temperature Update", message: "Successfully updated", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(ac, animated: true)
+                self.setUI()
+                self.tempUpdate.text = ""
+            }
+            
+            Database.database().reference().child("user-locations").child(userID).updateChildValues(updateValues) { (error, ref) in
+                
                 self.setUI()
                 self.tempUpdate.text = ""
             }

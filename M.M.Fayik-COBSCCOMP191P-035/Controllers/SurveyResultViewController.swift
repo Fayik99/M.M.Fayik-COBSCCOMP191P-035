@@ -56,12 +56,24 @@ class SurveyResultViewController: UIViewController {
             "surveyWeight": sValue,
             ] as [String : Any]
         
+        let date = Date()
+        let formatter = DateFormatter()
+        let formatter2 = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm"
+        formatter2.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        
+        let updateValues = [
+            "updated": formatter2.string(from: date)
+            ] as [String : Any]
+        
         Database.database().reference().child("users").child(userID).updateChildValues(values) { (error, ref) in
             
 //            let ac = UIAlertController(title: "Survey", message: "Successfully submitted", preferredStyle: .alert)
 //            ac.addAction(UIAlertAction(title: "OK", style: .default))
 //            self.present(ac, animated: true)
         }
+        Database.database().reference().child("user-locations").child(userID).updateChildValues(updateValues) { (error, ref) in }
+        
             let submit = UpdateViewController()
             submit.modalPresentationStyle = .fullScreen
             present(submit, animated: true, completion: {
