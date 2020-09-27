@@ -259,7 +259,7 @@ private extension HomeViewController {
         content.sound = .default
         
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.5, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         
         let request = UNNotificationRequest(identifier: "Reminder", content: content, trigger: trigger)
         
