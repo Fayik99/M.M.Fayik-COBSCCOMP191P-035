@@ -441,7 +441,7 @@ class HomeDashBoardViewController: UIViewController{
     func fetchUsers() {
         
         guard let location = locationManager?.location else { return }
-        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        let currentUser = Auth.auth().currentUser
         
         Services.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
@@ -478,15 +478,15 @@ class HomeDashBoardViewController: UIViewController{
             
             if !userIsVisible {
                 
-                if user.uid != currentUserId {
+                if currentUser == nil  || user.uid != currentUser?.uid {
                     if temp > 37 && survey >= 3
                     {
                         self.mapView.addAnnotation(annotation)
+                        
                         //                    let ac = UIAlertController(title: "Covid 19 Warning", message: "Covid infected person found within 500 meters", preferredStyle: .alert)
                         //                    ac.addAction(UIAlertAction(title: "Got it!", style: .default))
                         //                    self.present(ac, animated: true)
                         self.warningNotifications()
-                        
                     }
                 }
                 else {

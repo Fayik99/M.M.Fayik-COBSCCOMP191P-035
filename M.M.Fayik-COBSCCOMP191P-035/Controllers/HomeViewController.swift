@@ -54,8 +54,8 @@ class HomeViewController: UIViewController {
     func fetchUsers() {
            
         guard let location = locationManager?.location else { return }
-        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        
+        let currentUser = Auth.auth().currentUser
+
         Services.shared.fetchUsersLocation(location: location) { (user) in
             guard let coordinate = user.location?.coordinate else { return }
             let annotation = UserAnnotation(uid: user.uid, coordinate: coordinate)
@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
             
             if !userIsVisible {
                 
-                if user.uid != currentUserId {
+                if currentUser == nil  || user.uid != currentUser?.uid {
                     if temp > 37 && survey >= 3
                     {
                         self.mapView.addAnnotation(annotation)
